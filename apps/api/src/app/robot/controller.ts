@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { db } from '../db';
 
 /**
@@ -6,7 +7,7 @@ import { db } from '../db';
  * @param res
  * @returns
  */
-export const getRobots = async (req, res) => {
+export const getRobots = async (req: Request, res: Response) => {
   try {
     const query = db.collection('items');
     const response = [];
@@ -32,14 +33,28 @@ export const getRobots = async (req, res) => {
  * @param res
  * @returns
  */
-export const getRobotById = async (req, res) => {
+export const getRobotById = async (req: Request, res: Response) => {
   try {
     const document = db.collection('items').doc(req.params.id);
     const item = await document.get();
     const response = item.data();
     return res.status(200).send(response);
   } catch (error) {
-    console.log(error);
+    return res.status(500).send(error);
+  }
+};
+
+/**
+ * Create new robot entry
+ * @param req
+ * @param res
+ * @returns
+ */
+export const addRobot = async (req: Request, res: Response) => {
+  try {
+    await db.collection('items').add({ item: req.body.item });
+    return res.status(200).send();
+  } catch (error) {
     return res.status(500).send(error);
   }
 };
