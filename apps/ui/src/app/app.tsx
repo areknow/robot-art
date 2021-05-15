@@ -1,33 +1,18 @@
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-import { Admin, Gallery, Login } from './pages';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { GlobalNav } from './common/global-nav/global-nav';
+import { routes } from './routes';
 
 export const App = () => {
   return (
     <BrowserRouter>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Gallery</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
-          </ul>
-        </nav>
+        <GlobalNav />
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/admin">
-            <Admin />
-          </Route>
-          <Route path="/">
-            <Gallery />
-          </Route>
+          {routes.map((route, key) => (
+            <Route key={key} path={route.path}>
+              {route.component}
+            </Route>
+          ))}
         </Switch>
       </div>
     </BrowserRouter>
