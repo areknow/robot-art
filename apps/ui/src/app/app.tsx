@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Message } from '@robot-art/api-interfaces';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { Admin, Gallery, Login } from './pages';
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
-
-  useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
-  }, []);
-
   return (
-    <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to ui!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-          alt="Nx - Powerful, Extensible Dev Tools"
-        />
+    <BrowserRouter>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Gallery</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/admin">Admin</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/admin">
+            <Admin />
+          </Route>
+          <Route path="/">
+            <Gallery />
+          </Route>
+        </Switch>
       </div>
-      <div>{m.message}</div>
-    </>
+    </BrowserRouter>
   );
 };
 
