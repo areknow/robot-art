@@ -1,3 +1,5 @@
+import { Page } from '../../common/layout';
+
 export const Gallery = () => {
-  return <div>gallery</div>;
+  return <Page>gallery</Page>;
 };

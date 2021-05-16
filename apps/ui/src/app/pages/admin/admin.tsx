@@ -1,3 +1,5 @@
+import { Page } from '../../common/layout';
+
 export const Admin = () => {
-  return <div>admin</div>;
+  return <Page>admin</Page>;
 };

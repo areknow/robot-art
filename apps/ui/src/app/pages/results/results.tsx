@@ -1,3 +1,5 @@
+import { Page } from '../../common/layout';
+
 export const Results = () => {
-  return <div>results</div>;
+  return <Page>results</Page>;
 };
