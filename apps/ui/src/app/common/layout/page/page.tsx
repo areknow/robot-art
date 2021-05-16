@@ -14,5 +14,10 @@ const StyledPage = styled.div`
 export const Page = ({ title, children }: PageProps) => {
   document.title = `Robot Art | ${title}`;
 
-  return <StyledPage>{children}</StyledPage>;
+  return (
+    <StyledPage>
+      <h1>{title}</h1>
+      {children}
+    </StyledPage>
+  );
 };
