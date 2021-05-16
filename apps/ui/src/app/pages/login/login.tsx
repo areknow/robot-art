@@ -35,7 +35,7 @@ export const Login = () => {
         />
         <button
           onClick={async () => {
-            const user = email === 'Admin' ? 'admin@robots.com' : email;
+            const user = email === 'Admin' ? 'admin@robotart.com' : email;
             await firebase.auth().signInWithEmailAndPassword(user, password);
             setToken(await getToken());
           }}

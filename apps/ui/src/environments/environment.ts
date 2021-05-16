@@ -1,13 +1,12 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyAoAYQp2qaUeTnYzDls0UBkK3Qobxezk1o',
-    authDomain: 'react-firebase-test-4cd99.firebaseapp.com',
-    projectId: 'react-firebase-test-4cd99',
-    storageBucket: 'react-firebase-test-4cd99.appspot.com',
-    messagingSenderId: '368421215213',
-    appId: '1:368421215213:web:0215354d675bd49da665e4',
-    databaseURL:
-      'https://react-firebase-test-4cd99-default-rtdb.firebaseio.com/',
+    apiKey: 'AIzaSyDgjACwLjxwf2qfD7YqFUdnlTqAUcWrsKI',
+    authDomain: 'robot-art-8c4de.firebaseapp.com',
+    projectId: 'robot-art-8c4de',
+    storageBucket: 'robot-art-8c4de.appspot.com',
+    messagingSenderId: '965600688229',
+    appId: '1:965600688229:web:4ea8dc5ffe6b3e29722e8c',
+    databaseURL: 'https://robot-art-8c4de-default-rtdb.firebaseio.com/',
   },
 };
