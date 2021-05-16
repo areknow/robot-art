@@ -1,4 +1,4 @@
-import { Admin, Gallery, Login, Results } from './pages';
+import { Admin, Login, Results, Robots } from './pages';
 
 export const routes = [
   {
@@ -18,7 +18,7 @@ export const routes = [
   },
   {
     path: '/',
-    component: <Gallery />,
+    component: <Robots />,
     protected: true,
   },
 ];

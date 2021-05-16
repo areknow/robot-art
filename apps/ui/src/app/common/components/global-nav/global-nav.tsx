@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../../assets/logo.svg';
+import { MAIN_NAVIGATION, SECONDARY_NAVIGATION } from './links';
 import {
   StyledMainNav,
   StyledNavContainer,
@@ -14,28 +14,24 @@ export const GlobalNav = () => {
         <StyledMainNav>
           <Logo />
           <ul>
-            <li>
-              <Link to="/">Gallery</Link>
-            </li>
-            <li>
-              <Link to="/results">Results</Link>
-            </li>
+            {MAIN_NAVIGATION.map((item, key) => (
+              <li key={key}>
+                <Link to={item.path}>{item.label}</Link>
+              </li>
+            ))}
           </ul>
         </StyledMainNav>
         <StyledSecondaryNav>
           <ul>
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
-            <li>
-              <button
-                onClick={async () => {
-                  await firebase.auth().signOut();
-                }}
-              >
-                Log out
-              </button>
-            </li>
+            {SECONDARY_NAVIGATION.map((item, key) => (
+              <li key={key}>
+                {item.path ? (
+                  <Link to={item.path}>{item.label}</Link>
+                ) : (
+                  <button onClick={item.action}>{item.label}</button>
+                )}
+              </li>
+            ))}
           </ul>
         </StyledSecondaryNav>
       </div>

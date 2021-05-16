@@ -1,11 +1,11 @@
 import { GlobalNav } from '../../common/components';
 import { Page } from '../../common/layout';
 
-export const Gallery = () => {
+export const Robots = () => {
   return (
     <>
       <GlobalNav />
-      <Page title="Gallery">gallery</Page>
+      <Page title="Robots">robots</Page>
     </>
   );
 };
