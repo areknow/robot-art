@@ -1,27 +1,19 @@
 import { Request, Response } from 'express';
-import { db } from '../db';
+import {
+  addDocumentToCollection,
+  getDocumentFromCollection,
+  getDocumentsFromCollection,
+  updateDocumentInCollection,
+} from '../db/service';
+import { COLLECTION } from './constants';
 
 /**
  * Get all robots
- * @param req
- * @param res
- * @returns
+ * @returns list of robots
  */
 export const getRobots = async (req: Request, res: Response) => {
   try {
-    const query = db.collection('robots');
-    const response = [];
-    await query.get().then((querySnapshot) => {
-      const docs = querySnapshot.docs;
-      for (const doc of docs) {
-        const selectedItem = {
-          id: doc.id,
-          ...doc.data(),
-        };
-        response.push(selectedItem);
-      }
-    });
-    return res.status(200).send(response);
+    return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -29,16 +21,13 @@ export const getRobots = async (req: Request, res: Response) => {
 
 /**
  * Get unique robot by id
- * @param req
- * @param res
- * @returns
+ * @returns single robot
  */
 export const getRobotById = async (req: Request, res: Response) => {
   try {
-    const document = db.collection('robots').doc(req.params.id);
-    const item = await document.get();
-    const response = item.data();
-    return res.status(200).send(response);
+    return res
+      .status(200)
+      .send(await getDocumentFromCollection(COLLECTION, req.params.id));
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -46,16 +35,15 @@ export const getRobotById = async (req: Request, res: Response) => {
 
 /**
  * Create new robot entry
- * @param req
- * @param res
- * @returns
+ * @returns list of robots
  */
 export const addRobot = async (req: Request, res: Response) => {
   try {
-    await db
-      .collection('robots')
-      .add({ name: req.body.name, image: req.body.image });
-    return res.status(200).send();
+    await addDocumentToCollection(COLLECTION, {
+      name: req.body.name,
+      image: req.body.image,
+    });
+    return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -63,18 +51,12 @@ export const addRobot = async (req: Request, res: Response) => {
 
 /**
  * Increment the vote count for a unique robot
- * @param req
- * @param res
- * @returns
+ * @returns list of robots
  */
 export const voteForRobotById = async (req: Request, res: Response) => {
   try {
-    const document = db.collection('robots').doc(req.params.id);
-    const item = await document.get();
-    await document.update({
-      votes: item.data().votes + 1,
-    });
-    return res.status(200).send();
+    await updateDocumentInCollection(COLLECTION, req.params.id);
+    return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
