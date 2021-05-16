@@ -5,7 +5,7 @@ export const Results = () => {
   return (
     <>
       <GlobalNav />
-      <Page>results</Page>
+      <Page title="Results">results</Page>
     </>
   );
 };

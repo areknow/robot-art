@@ -5,7 +5,7 @@ export const Admin = () => {
   return (
     <>
       <GlobalNav />
-      <Page>admin</Page>
+      <Page title="Admin">admin</Page>
     </>
   );
 };

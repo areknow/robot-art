@@ -5,7 +5,7 @@ export const Gallery = () => {
   return (
     <>
       <GlobalNav />
-      <Page>gallery</Page>
+      <Page title="Gallery">gallery</Page>
     </>
   );
 };

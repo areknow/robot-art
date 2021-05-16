@@ -18,6 +18,8 @@ import {
 } from './styles';
 
 export const Login = () => {
+  document.title = 'Robot Art';
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

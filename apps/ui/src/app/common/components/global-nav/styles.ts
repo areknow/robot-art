@@ -55,6 +55,10 @@ export const StyledSecondaryNav = styled.div`
       &:not(:last-child) {
         margin-right: 24px;
       }
+      button {
+        all: unset;
+        cursor: pointer;
+      }
     }
   }
 `;
