@@ -2,7 +2,7 @@ import { Robot } from '@robot-art/api-interfaces';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { GlobalNav, ResultCard } from '../../common/components';
+import { GlobalNav, VoteCard } from '../../common/components';
 import { storage } from '../../common/constants';
 import { Page } from '../../common/layout';
 
@@ -34,6 +34,10 @@ export const Robots = () => {
     fetch();
   }, []);
 
+  const castVote = (id: string) => {
+    console.log(id);
+  };
+
   return (
     <>
       <GlobalNav />
@@ -42,14 +46,15 @@ export const Robots = () => {
           'loading...'
         ) : (
           <StyledGrid>
-            {robots.length > 0 &&
-              robots.map((robot, key) => (
-                <ResultCard
-                  key={key}
-                  name={robot.name}
-                  image={robot.imageUrl}
-                />
-              ))}
+            {robots.map((robot, key) => (
+              <VoteCard
+                key={key}
+                name={robot.name}
+                image={robot.imageUrl}
+                hasVoted={false}
+                onActionClick={() => castVote(robot.id)}
+              />
+            ))}
           </StyledGrid>
         )}
       </Page>

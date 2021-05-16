@@ -60,3 +60,24 @@ export const addRobot = async (req: Request, res: Response) => {
     return res.status(500).send(error);
   }
 };
+
+/**
+ * Increment the vote count for a unique robot
+ * @param req
+ * @param res
+ * @returns
+ */
+export const voteForRobotById = async (req: Request, res: Response) => {
+  try {
+    const document = db.collection('robots').doc(req.params.id);
+    const item = await document.get();
+    console.log(item.data().votes);
+    await document.update({
+      votes: item.data().votes + 1,
+    });
+    return res.status(200).send();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
+};
