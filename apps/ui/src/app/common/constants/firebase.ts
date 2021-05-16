@@ -4,4 +4,5 @@ import { environment } from '../../../environments/environment';
 firebase.initializeApp(environment.firebaseConfig);
 
 export const ref = firebase.database().ref();
+export const storage = firebase.storage().ref();
 export const firebaseAuth = firebase.auth;

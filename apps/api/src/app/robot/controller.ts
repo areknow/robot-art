@@ -9,14 +9,14 @@ import { db } from '../db';
  */
 export const getRobots = async (req: Request, res: Response) => {
   try {
-    const query = db.collection('items');
+    const query = db.collection('robots');
     const response = [];
     await query.get().then((querySnapshot) => {
       const docs = querySnapshot.docs;
       for (const doc of docs) {
         const selectedItem = {
           id: doc.id,
-          item: doc.data().item,
+          ...doc.data(),
         };
         response.push(selectedItem);
       }
@@ -35,7 +35,7 @@ export const getRobots = async (req: Request, res: Response) => {
  */
 export const getRobotById = async (req: Request, res: Response) => {
   try {
-    const document = db.collection('items').doc(req.params.id);
+    const document = db.collection('robots').doc(req.params.id);
     const item = await document.get();
     const response = item.data();
     return res.status(200).send(response);
@@ -52,7 +52,9 @@ export const getRobotById = async (req: Request, res: Response) => {
  */
 export const addRobot = async (req: Request, res: Response) => {
   try {
-    await db.collection('items').add({ item: req.body.item });
+    await db
+      .collection('robots')
+      .add({ name: req.body.name, image: req.body.image });
     return res.status(200).send();
   } catch (error) {
     return res.status(500).send(error);
