@@ -26,7 +26,9 @@ export const StyledContent = styled.div`
 export const StyledForm = styled.div`
   margin-top: 100px;
   padding: 0 80px;
-
+  button {
+    width: 100%;
+  }
   button:not(:last-child) {
     margin-bottom: 16px;
   }

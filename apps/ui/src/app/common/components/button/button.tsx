@@ -12,7 +12,6 @@ const StyledButton = styled.button<Pick<ButtonProps, 'variant'>>`
   background: #414242;
   border-radius: 8px;
   padding: 14px;
-  width: 100%;
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;

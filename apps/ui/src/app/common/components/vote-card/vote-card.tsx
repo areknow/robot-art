@@ -16,13 +16,15 @@ const StyledVoteCard = styled.div`
   border-radius: 8px;
   padding: 40px 24px 24px 24px;
   text-align: center;
-  h3 {
-  }
   img {
     margin-top: 20px;
     width: auto;
     margin: auto;
     height: 320px;
+  }
+  button {
+    margin-top: 36px;
+    width: 150px;
   }
 `;
 
