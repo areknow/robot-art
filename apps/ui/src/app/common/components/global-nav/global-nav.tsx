@@ -16,7 +16,9 @@ export const GlobalNav = () => {
             <li>
               <Link to="/">Gallery</Link>
             </li>
-            <li>Results</li>
+            <li>
+              <Link to="/results">Results</Link>
+            </li>
           </ul>
         </StyledMainNav>
         <StyledSecondaryNav>
