@@ -1,21 +1,11 @@
-import { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../styles/global.scss';
 import { ProtectedRoute } from './common/components';
-import { firebaseAuth } from './common/constants';
+import { useFirebaseAuthenticated } from './common/hooks';
 import { routes } from './routes';
 
 export const App = () => {
-  const [authenticated, setAuthenticated] = useState(false);
-
-  //TODO: make this a hook...
-  firebaseAuth().onAuthStateChanged((user) => {
-    if (user) {
-      setAuthenticated(true);
-    } else {
-      setAuthenticated(false);
-    }
-  });
+  const { authenticated } = useFirebaseAuthenticated();
 
   return (
     <BrowserRouter>

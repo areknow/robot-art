@@ -1,11 +1,12 @@
 import { FirebaseAuthProvider } from '@react-firebase/auth';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { environment } from '../../../environments/environment';
 import { Button, Input } from '../../common/components';
+import { useFirebaseAuthenticated } from '../../common/hooks';
 import { ADMIN_EMAIL, ADMIN_USER_NAME } from './constants';
 import {
   StyledButtons,
@@ -23,6 +24,20 @@ export const Login = () => {
   const [token, setToken] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const history = useHistory();
+  const { authenticated } = useFirebaseAuthenticated();
+  const [componentDidMount, setComponentDidMount] = useState(false);
+
+  useEffect(() => {
+    if (authenticated) {
+      history.push('/');
+    }
+    setComponentDidMount(true);
+    return () => setComponentDidMount(false);
+  }, [authenticated, history]);
+
+  if (!componentDidMount) {
+    return null;
+  }
 
   const getToken = async () => {
     return await firebase.auth().currentUser.getIdToken(true);
