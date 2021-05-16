@@ -1,3 +1,4 @@
+import firebase from 'firebase/app';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../../assets/logo.svg';
 import {
@@ -26,7 +27,15 @@ export const GlobalNav = () => {
             <li>
               <Link to="/admin">Admin</Link>
             </li>
-            <li>Log Out</li>
+            <li>
+              <button
+                onClick={async () => {
+                  await firebase.auth().signOut();
+                }}
+              >
+                Log out
+              </button>
+            </li>
           </ul>
         </StyledSecondaryNav>
       </div>

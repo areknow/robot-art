@@ -4,6 +4,8 @@ export const StyledNavContainer = styled.div`
   background: #fff;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.17);
   padding: 24px 0;
+  position: relative;
+  z-index: 1;
   > div {
     display: flex;
     justify-content: space-between;

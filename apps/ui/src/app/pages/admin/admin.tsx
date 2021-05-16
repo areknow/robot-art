@@ -1,5 +1,11 @@
+import { GlobalNav } from '../../common/components';
 import { Page } from '../../common/layout';
 
 export const Admin = () => {
-  return <Page>admin</Page>;
+  return (
+    <>
+      <GlobalNav />
+      <Page>admin</Page>
+    </>
+  );
 };
