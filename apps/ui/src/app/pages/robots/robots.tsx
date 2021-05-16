@@ -35,7 +35,7 @@ export const Robots = () => {
   }, []);
 
   const castVote = (id: string) => {
-    console.log(id);
+    axios.put(`/api/vote-robot/${id}`);
   };
 
   return (

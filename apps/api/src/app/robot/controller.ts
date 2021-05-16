@@ -71,7 +71,6 @@ export const voteForRobotById = async (req: Request, res: Response) => {
   try {
     const document = db.collection('robots').doc(req.params.id);
     const item = await document.get();
-    console.log(item.data().votes);
     await document.update({
       votes: item.data().votes + 1,
     });
