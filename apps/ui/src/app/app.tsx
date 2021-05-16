@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../styles/global.scss';
-import { GlobalNav } from './common/global-nav/global-nav';
+import { GlobalNav } from './common/components';
 import { routes } from './routes';
 
 export const App = () => {

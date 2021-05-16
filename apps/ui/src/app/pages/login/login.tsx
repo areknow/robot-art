@@ -8,6 +8,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useState } from 'react';
 import { environment } from '../../../environments/environment';
+import { ADMIN_EMAIL, ADMIN_USER_NAME } from './constants';
+import styles from './login.module.scss';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +22,7 @@ export const Login = () => {
 
   return (
     <FirebaseAuthProvider {...environment.firebaseConfig} firebase={firebase}>
-      <div>
+      <div className={styles.login}>
         token: {JSON.stringify(token)}
         <br></br>
         <input
@@ -35,7 +37,7 @@ export const Login = () => {
         />
         <button
           onClick={async () => {
-            const user = email === 'Admin' ? 'admin@robotart.com' : email;
+            const user = email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
             await firebase.auth().signInWithEmailAndPassword(user, password);
             setToken(await getToken());
           }}
