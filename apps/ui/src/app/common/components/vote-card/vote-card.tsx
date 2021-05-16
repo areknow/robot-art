@@ -1,9 +1,10 @@
+import { Robot } from '@robot-art/api-interfaces';
 import styled from 'styled-components';
 import { Button } from '../../components';
 
 interface VoteCardProps {
-  name: string;
-  image: string;
+  robot: Robot;
+
   hasVoted: boolean;
   onActionClick: () => void;
 }
@@ -28,16 +29,11 @@ const StyledVoteCard = styled.div`
   }
 `;
 
-export const VoteCard = ({
-  name,
-  image,
-  hasVoted,
-  onActionClick,
-}: VoteCardProps) => {
+export const VoteCard = ({ robot, hasVoted, onActionClick }: VoteCardProps) => {
   return (
     <StyledVoteCard>
-      <h3>{name}</h3>
-      <img alt={name} src={image} />
+      <h3>{robot.name}</h3>
+      <img alt={robot.name} src={robot.imageUrl} />
       <Button onClick={onActionClick}>{hasVoted ? 'Vote cast' : 'Vote'}</Button>
     </StyledVoteCard>
   );

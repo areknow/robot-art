@@ -3,4 +3,5 @@ export interface Robot {
   name: string;
   image: string;
   imageUrl: string;
+  votes: number;
 }
