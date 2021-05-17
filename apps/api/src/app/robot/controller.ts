@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { decodeToken } from '../auth';
 import {
   addDocumentToCollection,
+  deleteDocumentById,
   getDocumentFromCollection,
   getDocumentsFromCollection,
   updateDocumentInCollection,
@@ -46,6 +47,19 @@ export const addRobot = async (req: Request, res: Response) => {
       votes: 0,
       voters: [],
     });
+    return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
+/**
+ * Remove robot by id
+ * @returns list of robots
+ */
+export const deleteRobot = async (req: Request, res: Response) => {
+  try {
+    await deleteDocumentById(COLLECTION, req.params.id);
     return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
   } catch (error) {
     return res.status(500).send(error);

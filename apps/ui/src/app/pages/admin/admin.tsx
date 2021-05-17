@@ -6,8 +6,9 @@ import { storage } from '../../common/constants';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
 import {
+  addRobot,
   combineRobotsWithImages,
-  createRobot,
+  deleteRobot,
   generateRandomHash,
   getRobots,
 } from '../../common/utils';
@@ -34,12 +35,12 @@ export const Admin = () => {
     })();
   }, [authenticated]);
 
-  const addRobot = async (file: File, name: string) => {
+  const handleAdd = async (file: File, name: string) => {
     setLoading(true);
     try {
       const hash = generateRandomHash();
       await storage.child(hash).put(file);
-      const response = await createRobot(name, hash);
+      const response = await addRobot(name, hash);
       setRobots(await combineRobotsWithImages(response.data));
     } catch (error) {
       setError(true);
@@ -48,12 +49,20 @@ export const Admin = () => {
     }
   };
 
-  const editRobot = (id: string) => {
+  const handleEdit = (id: string) => {
     console.log(1);
   };
 
-  const deleteRobot = (id: string) => {
-    console.log(2);
+  const handleDelete = async (id: string) => {
+    setLoading(true);
+    try {
+      const response = await deleteRobot(id);
+      setRobots(await combineRobotsWithImages(response.data));
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -64,13 +73,13 @@ export const Admin = () => {
           <Loader />
         ) : (
           <Grid>
-            <AddCard onAddClick={addRobot} />
+            <AddCard onAddClick={handleAdd} />
             {robots.map((robot, key) => (
               <EditCard
                 key={key}
                 robot={robot}
-                onEditClick={() => editRobot(robot.id)}
-                onDeleteClick={() => deleteRobot(robot.id)}
+                onEditClick={() => handleEdit(robot.id)}
+                onDeleteClick={() => handleDelete(robot.id)}
               />
             ))}
           </Grid>

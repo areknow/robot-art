@@ -49,6 +49,15 @@ export const addDocumentToCollection = async (
 };
 
 /**
+ * Delete a single document from a collection
+ * @param collection The collection to query
+ * @param id The ID of the document
+ */
+export const deleteDocumentById = async (collection: string, id: string) => {
+  await db.collection(collection).doc(id).delete();
+};
+
+/**
  * Update a document in a collection
  * @param collection The collection to query
  * @param id The ID of the document
