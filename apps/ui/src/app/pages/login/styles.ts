@@ -23,8 +23,16 @@ export const StyledContent = styled.div`
   }
 `;
 
+export const StyledFormError = styled.div`
+  margin-top: 50px;
+  color: #d83030;
+  text-align: center;
+  height: 16px;
+  padding: 0 80px;
+`;
+
 export const StyledForm = styled.div`
-  margin-top: 100px;
+  margin-top: 30px;
   padding: 0 80px;
   button {
     width: 100%;

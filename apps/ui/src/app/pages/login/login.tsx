@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { Button, Input } from '../../common/components';
 import { useFirebaseAuthenticated } from '../../common/hooks';
@@ -12,6 +12,7 @@ import {
   StyledContent,
   StyledFooterContent,
   StyledForm,
+  StyledFormError,
   StyledInputs,
 } from './styles';
 
@@ -22,25 +23,41 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
+  const [formDirty, setFormDirty] = useState(false);
+  const [formError, setFormError] = useState('');
 
-  const history = useHistory();
   const { authenticated } = useFirebaseAuthenticated();
-
-  const loginWithEmailPass = async () => {
-    const user = email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
-    await firebase.auth().signInWithEmailAndPassword(user, password);
-    history.push('/');
-  };
 
   const loginWithGoogle = async () => {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     await firebase.auth().signInWithPopup(googleAuthProvider);
-    history.push('/');
   };
 
   const registerWithEmailPass = async () => {
-    await firebase.auth().createUserWithEmailAndPassword(email, password);
-    history.push('/');
+    setFormDirty(true);
+    if (!email.length || !password.length) {
+      setFormError('Please ensure the form is not empty.');
+    } else {
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+      } catch (error) {
+        setFormError(error.message);
+      }
+    }
+  };
+
+  const loginWithEmailPass = async () => {
+    setFormDirty(true);
+    if (!email.length || !password.length) {
+      setFormError('Please ensure the form is not empty.');
+    } else {
+      const user = email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
+      try {
+        await firebase.auth().signInWithEmailAndPassword(user, password);
+      } catch (error) {
+        setFormError(error.message);
+      }
+    }
   };
 
   const handleInputKeyPress = async (
@@ -48,7 +65,13 @@ export const Login = () => {
   ) => {
     if (email && password && event.key === 'Enter') {
       loginWithEmailPass();
+      setFormDirty(true);
     }
+  };
+
+  const resetForm = () => {
+    setFormDirty(false);
+    setFormError('');
   };
 
   if (authenticated) {
@@ -58,20 +81,27 @@ export const Login = () => {
       <StyledContainer>
         <StyledContent>
           <Logo />
+          <StyledFormError>{formError ? formError : ''}</StyledFormError>
           <StyledForm>
             <StyledInputs>
               {isRegistering && (
                 <Input
                   label="Name"
                   value={name}
-                  onChange={(value) => setName(value)}
+                  onChange={(value) => {
+                    setName(value);
+                  }}
                 />
               )}
               <div onKeyPress={handleInputKeyPress}>
                 <Input
                   label="Email"
                   value={email}
-                  onChange={(value) => setEmail(value)}
+                  invalid={formDirty && email.length === 0}
+                  onChange={(value) => {
+                    resetForm();
+                    setEmail(value);
+                  }}
                 />
               </div>
               <div onKeyPress={handleInputKeyPress}>
@@ -79,7 +109,11 @@ export const Login = () => {
                   label="Password"
                   type="password"
                   value={password}
-                  onChange={(value) => setPassword(value)}
+                  invalid={formDirty && password.length === 0}
+                  onChange={(value) => {
+                    resetForm();
+                    setPassword(value);
+                  }}
                 />
               </div>
             </StyledInputs>
@@ -90,7 +124,7 @@ export const Login = () => {
                     loginWithEmailPass();
                   }}
                 >
-                  Log in
+                  Log In
                 </Button>
               )}
               {isRegistering && (
@@ -114,7 +148,12 @@ export const Login = () => {
                 {!isRegistering && (
                   <div>
                     <span>Not a member yet?</span>
-                    <button onClick={() => setIsRegistering(true)}>
+                    <button
+                      onClick={() => {
+                        resetForm();
+                        setIsRegistering(true);
+                      }}
+                    >
                       Sign up
                     </button>
                   </div>
@@ -122,7 +161,12 @@ export const Login = () => {
                 {isRegistering && (
                   <div>
                     <span>Already a member?</span>
-                    <button onClick={() => setIsRegistering(false)}>
+                    <button
+                      onClick={() => {
+                        resetForm();
+                        setIsRegistering(false);
+                      }}
+                    >
                       Log in
                     </button>
                   </div>
