@@ -11,6 +11,5 @@ export const getRobotImageUrl = (image: string): Promise<string> => {
 };
 
 export const voteForRobot = (id: string) => {
-  //TODO: pass user token
   axios.put(`/api/vote-robot/${id}`);
 };
