@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { Button, Input } from '../../common/components';
 import { useFirebaseAuthenticated } from '../../common/hooks';
@@ -22,104 +22,96 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
-  const [componentDidMount, setComponentDidMount] = useState(false);
 
   const history = useHistory();
   const { authenticated } = useFirebaseAuthenticated();
 
-  useEffect(() => {
-    if (authenticated) {
-      history.push('/');
-    }
-    setComponentDidMount(true);
-    return () => setComponentDidMount(false);
-  }, [authenticated, history]);
-
-  if (!componentDidMount) {
-    return null;
-  }
-
-  return (
-    <StyledContainer>
-      <StyledContent>
-        <Logo />
-        <StyledForm>
-          <StyledInputs>
-            {isRegistering && (
+  if (authenticated) {
+    return <Redirect to="/" />;
+  } else {
+    return (
+      <StyledContainer>
+        <StyledContent>
+          <Logo />
+          <StyledForm>
+            <StyledInputs>
+              {isRegistering && (
+                <Input
+                  label="Name"
+                  value={name}
+                  onChange={(value) => setName(value)}
+                />
+              )}
               <Input
-                label="Name"
-                value={name}
-                onChange={(value) => setName(value)}
+                label="Email"
+                value={email}
+                onChange={(value) => setEmail(value)}
               />
-            )}
-            <Input
-              label="Email"
-              value={email}
-              onChange={(value) => setEmail(value)}
-            />
-            <Input
-              label="Password"
-              value={password}
-              onChange={(value) => setPassword(value)}
-            />
-          </StyledInputs>
-          <StyledButtons>
-            {!isRegistering && (
-              <Button
-                onClick={async () => {
-                  const user = email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
-                  await firebase
-                    .auth()
-                    .signInWithEmailAndPassword(user, password);
-                  history.push('/');
-                }}
-              >
-                Log in
-              </Button>
-            )}
-            {isRegistering && (
-              <Button
-                onClick={async () => {
-                  await firebase
-                    .auth()
-                    .createUserWithEmailAndPassword(email, password);
-                  history.push('/');
-                }}
-              >
-                Sign up
-              </Button>
-            )}
-            <Button
-              variant="secondary"
-              onClick={async () => {
-                const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                await firebase.auth().signInWithPopup(googleAuthProvider);
-                history.push('/');
-              }}
-            >
-              Authenticate with Google
-            </Button>
-            <StyledFooterContent>
+              <Input
+                label="Password"
+                value={password}
+                onChange={(value) => setPassword(value)}
+              />
+            </StyledInputs>
+            <StyledButtons>
               {!isRegistering && (
-                <div>
-                  <span>Not a member yet?</span>
-                  <button onClick={() => setIsRegistering(true)}>
-                    Sign up
-                  </button>
-                </div>
+                <Button
+                  onClick={async () => {
+                    const user =
+                      email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
+                    await firebase
+                      .auth()
+                      .signInWithEmailAndPassword(user, password);
+                    history.push('/');
+                  }}
+                >
+                  Log in
+                </Button>
               )}
               {isRegistering && (
-                <div>
-                  <span>Already a member?</span>
-                  <button onClick={() => setIsRegistering(false)}>
-                    Log in
-                  </button>
-                </div>
+                <Button
+                  onClick={async () => {
+                    await firebase
+                      .auth()
+                      .createUserWithEmailAndPassword(email, password);
+                    history.push('/');
+                  }}
+                >
+                  Sign up
+                </Button>
               )}
-            </StyledFooterContent>
-          </StyledButtons>
-        </StyledForm>
-      </StyledContent>
-    </StyledContainer>
-  );
+              <Button
+                variant="secondary"
+                onClick={async () => {
+                  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                  await firebase.auth().signInWithPopup(googleAuthProvider);
+                  history.push('/');
+                }}
+              >
+                Authenticate with Google
+              </Button>
+              <StyledFooterContent>
+                {!isRegistering && (
+                  <div>
+                    <span>Not a member yet?</span>
+                    <button onClick={() => setIsRegistering(true)}>
+                      Sign up
+                    </button>
+                  </div>
+                )}
+                {isRegistering && (
+                  <div>
+                    <span>Already a member?</span>
+                    <button onClick={() => setIsRegistering(false)}>
+                      Log in
+                    </button>
+                  </div>
+                )}
+              </StyledFooterContent>
+            </StyledButtons>
+          </StyledForm>
+        </StyledContent>
+      </StyledContainer>
+    );
+  }
 };

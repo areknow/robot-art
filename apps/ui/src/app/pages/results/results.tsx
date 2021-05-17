@@ -1,6 +1,7 @@
 import { Robot } from '@robot-art/api-interfaces';
 import { useEffect, useState } from 'react';
 import { GlobalNav, Grid } from '../../common/components';
+import { Loader } from '../../common/components/loader/loader';
 import { ResultCard } from '../../common/components/result-card/result-card';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
@@ -37,7 +38,7 @@ export const Results = () => {
       <GlobalNav />
       <Page title="Results">
         {loading ? (
-          'loading...'
+          <Loader />
         ) : (
           <Grid>
             {robots.map((robot, key) => (

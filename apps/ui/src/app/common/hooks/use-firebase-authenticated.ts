@@ -29,6 +29,7 @@ export const useFirebaseAuthenticated = () => {
         Authorization: user?.stsTokenManager?.accessToken,
       };
     }
+    return () => setUserId('');
   }, [user]);
 
   return { authenticated, userId };

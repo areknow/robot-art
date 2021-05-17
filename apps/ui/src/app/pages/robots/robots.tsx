@@ -1,6 +1,7 @@
 import { Robot } from '@robot-art/api-interfaces';
 import { useEffect, useState } from 'react';
 import { GlobalNav, Grid, VoteCard } from '../../common/components';
+import { Loader } from '../../common/components/loader/loader';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
 import { getRobots, voteForRobot } from '../../common/utils';
@@ -38,7 +39,7 @@ export const Robots = () => {
       <GlobalNav />
       <Page title="Robots">
         {loading ? (
-          'loading...'
+          <Loader />
         ) : (
           <Grid>
             {robots.map((robot, key) => (
