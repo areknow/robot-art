@@ -22,7 +22,12 @@ const StyledButton = styled.button<Pick<ButtonProps, 'variant' | 'disabled'>>`
   box-sizing: border-box;
   cursor: pointer;
   &:hover {
-    background: #2e2e2e;
+    border-color: #737475;
+    background: #737475;
+  }
+  &:active {
+    border-color: #414242;
+    background: #414242;
   }
   ${({ variant }) =>
     variant === 'secondary' &&
@@ -30,8 +35,13 @@ const StyledButton = styled.button<Pick<ButtonProps, 'variant' | 'disabled'>>`
       color: #414242;
       background: #ffffff;
       &:hover {
-        background: #fafafa;
-        color: #2e2e2e;
+        background: #f4f6f8;
+        color: #414242;
+      }
+      &:active {
+        border-color: #414242;
+        background: #414242;
+        color: #fff;
       }
     `}
   ${({ disabled }) =>

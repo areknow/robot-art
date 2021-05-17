@@ -26,6 +26,31 @@ export const Login = () => {
   const history = useHistory();
   const { authenticated } = useFirebaseAuthenticated();
 
+  const loginWithEmailPass = async () => {
+    const user = email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
+    await firebase.auth().signInWithEmailAndPassword(user, password);
+    history.push('/');
+  };
+
+  const loginWithGoogle = async () => {
+    const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    await firebase.auth().signInWithPopup(googleAuthProvider);
+    history.push('/');
+  };
+
+  const registerWithEmailPass = async () => {
+    await firebase.auth().createUserWithEmailAndPassword(email, password);
+    history.push('/');
+  };
+
+  const handleInputKeyPress = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (email && password && event.key === 'Enter') {
+      loginWithEmailPass();
+    }
+  };
+
   if (authenticated) {
     return <Redirect to="/" />;
   } else {
@@ -42,27 +67,27 @@ export const Login = () => {
                   onChange={(value) => setName(value)}
                 />
               )}
-              <Input
-                label="Email"
-                value={email}
-                onChange={(value) => setEmail(value)}
-              />
-              <Input
-                label="Password"
-                value={password}
-                onChange={(value) => setPassword(value)}
-              />
+              <div onKeyPress={handleInputKeyPress}>
+                <Input
+                  label="Email"
+                  value={email}
+                  onChange={(value) => setEmail(value)}
+                />
+              </div>
+              <div onKeyPress={handleInputKeyPress}>
+                <Input
+                  label="Password"
+                  type="password"
+                  value={password}
+                  onChange={(value) => setPassword(value)}
+                />
+              </div>
             </StyledInputs>
             <StyledButtons>
               {!isRegistering && (
                 <Button
                   onClick={async () => {
-                    const user =
-                      email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
-                    await firebase
-                      .auth()
-                      .signInWithEmailAndPassword(user, password);
-                    history.push('/');
+                    loginWithEmailPass();
                   }}
                 >
                   Log in
@@ -71,10 +96,7 @@ export const Login = () => {
               {isRegistering && (
                 <Button
                   onClick={async () => {
-                    await firebase
-                      .auth()
-                      .createUserWithEmailAndPassword(email, password);
-                    history.push('/');
+                    registerWithEmailPass();
                   }}
                 >
                   Sign up
@@ -83,9 +105,7 @@ export const Login = () => {
               <Button
                 variant="secondary"
                 onClick={async () => {
-                  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                  await firebase.auth().signInWithPopup(googleAuthProvider);
-                  history.push('/');
+                  loginWithGoogle();
                 }}
               >
                 Authenticate with Google

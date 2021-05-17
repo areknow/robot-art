@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 interface InputProps {
   value: string;
   label: string;
+  type?: string;
   onChange: (value: string) => void;
 }
 
@@ -41,7 +42,7 @@ const StyledInput = styled.input`
   line-height: 25px;
 `;
 
-export const Input = ({ value, label, onChange }: InputProps) => {
+export const Input = ({ value, label, type, onChange }: InputProps) => {
   const [focused, setFocused] = useState(false);
   return (
     <StyledInputContainer
@@ -51,6 +52,7 @@ export const Input = ({ value, label, onChange }: InputProps) => {
       <StyledLabel focused={focused || value.length > 0}>{label}</StyledLabel>
       <StyledInput
         value={value}
+        type={type}
         onChange={(event) => onChange(event.target.value)}
       />
     </StyledInputContainer>
