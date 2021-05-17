@@ -43,6 +43,8 @@ export const addRobot = async (req: Request, res: Response) => {
     await addDocumentToCollection(COLLECTION, {
       name: req.body.name,
       image: req.body.image,
+      votes: 0,
+      voters: [],
     });
     return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
   } catch (error) {

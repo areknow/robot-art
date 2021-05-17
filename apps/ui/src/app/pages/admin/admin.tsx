@@ -1,9 +1,16 @@
 import { Robot } from '@robot-art/api-interfaces';
 import { useEffect, useState } from 'react';
 import { EditCard, GlobalNav, Grid, Loader } from '../../common/components';
+import { AddCard } from '../../common/components/add-card/add-card';
+import { storage } from '../../common/constants';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
-import { combineRobotsWithImages, getRobots } from '../../common/utils';
+import {
+  combineRobotsWithImages,
+  createRobot,
+  generateRandomHash,
+  getRobots,
+} from '../../common/utils';
 
 export const Admin = () => {
   const [loading, setLoading] = useState(true);
@@ -27,6 +34,20 @@ export const Admin = () => {
     })();
   }, [authenticated]);
 
+  const addRobot = async (file: File, name: string) => {
+    setLoading(true);
+    try {
+      const hash = generateRandomHash();
+      await storage.child(hash).put(file);
+      const response = await createRobot(name, hash);
+      setRobots(await combineRobotsWithImages(response.data));
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const editRobot = (id: string) => {
     console.log(1);
   };
@@ -43,6 +64,7 @@ export const Admin = () => {
           <Loader />
         ) : (
           <Grid>
+            <AddCard onAddClick={addRobot} />
             {robots.map((robot, key) => (
               <EditCard
                 key={key}

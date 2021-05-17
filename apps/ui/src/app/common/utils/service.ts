@@ -8,3 +8,7 @@ export const getRobots = () => {
 export const voteForRobot = (id: string) => {
   return axios.put(`/api/vote-robot/${id}`);
 };
+
+export const createRobot = (name: string, image: string) => {
+  return axios.post(`/api/add-robot`, { name, image });
+};

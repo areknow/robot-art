@@ -53,5 +53,6 @@ export const StyledFooterContent = styled.div`
   button {
     all: unset;
     cursor: pointer;
+    text-decoration: underline;
   }
 `;

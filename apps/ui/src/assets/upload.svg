@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" fill="#414242" fill-rule="nonzero">
+            <path d="M18.9999,14.9999 L18.9999,18.9999 L2.99992,18.9999 L2.99992,14.9999 L0.333252,14.9999 L0.333252,18.9999 C0.333252,20.4666 1.53325,21.6666 2.99992,21.6666 L18.9999,21.6666 C20.4666,21.6666 21.6666,20.4666 21.6666,18.9999 L21.6666,14.9999 L18.9999,14.9999 Z M4.33325,6.99992 L6.21325,8.87992 L9.66658,5.43992 L9.66658,16.3333 L12.3333,16.3333 L12.3333,5.43992 L15.7866,8.87992 L17.6666,6.99992 L10.9999,0.333252 L4.33325,6.99992 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
