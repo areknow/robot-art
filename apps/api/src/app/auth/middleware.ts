@@ -11,7 +11,7 @@ export const authMiddleware = async (
   } else {
     const errorMessage = 'Unauthorized request.';
     const err = new Error(errorMessage);
-    res.status(401).json({ error: errorMessage });
+    res.status(401).send({ error: errorMessage });
     next(err);
   }
 };

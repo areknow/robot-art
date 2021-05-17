@@ -55,11 +55,9 @@ export const addDocumentToCollection = async (
  */
 export const updateDocumentInCollection = async (
   collection: string,
-  id: string
+  id: string,
+  updateData: FirebaseFirestore.DocumentData
 ) => {
   const document = db.collection(collection).doc(id);
-  const item = await document.get();
-  await document.update({
-    votes: item.data().votes + 1,
-  });
+  await document.update(updateData);
 };

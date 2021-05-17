@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { decodeToken } from '../auth';
 import {
   addDocumentToCollection,
   getDocumentFromCollection,
@@ -50,13 +51,25 @@ export const addRobot = async (req: Request, res: Response) => {
 };
 
 /**
- * Increment the vote count for a unique robot
+ * Increment the vote count for a unique robot and update voters list
  * @returns list of robots
  */
 export const voteForRobotById = async (req: Request, res: Response) => {
   try {
-    await updateDocumentInCollection(COLLECTION, req.params.id);
-    return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
+    const document = await getDocumentFromCollection(COLLECTION, req.params.id);
+    const updateData = {
+      votes: document.votes + 1,
+      voters: document.voters,
+    };
+    const user = await decodeToken(req.headers.authorization);
+    if (document.voters.includes(user.uid)) {
+      const errorMessage = `User ${user.uid} has already voted for robot ${req.params.id}.`;
+      return res.status(500).send({ error: errorMessage });
+    } else {
+      updateData.voters.push(user.uid);
+      await updateDocumentInCollection(COLLECTION, req.params.id, updateData);
+      return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
