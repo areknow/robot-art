@@ -20,9 +20,9 @@ export const Results = () => {
     (async () => {
       if (authenticated) {
         try {
-          const result = await getRobots();
+          const response = await getRobots();
           setRobots(
-            sortByVoteCount(await combineRobotsWithImages(result.data))
+            sortByVoteCount(await combineRobotsWithImages(response.data))
           );
         } catch (error) {
           setError(true);

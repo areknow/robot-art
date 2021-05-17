@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../../assets/logo.svg';
-import { MAIN_NAVIGATION, SECONDARY_NAVIGATION } from './links';
+import { firebaseAuth } from '../../constants';
+import { useFirebaseAdmin } from '../../hooks';
+import { MAIN_NAVIGATION } from './links';
 import {
   StyledMainNav,
   StyledNavContainer,
@@ -8,6 +10,8 @@ import {
 } from './styles';
 
 export const GlobalNav = () => {
+  const { isAdmin } = useFirebaseAdmin();
+
   return (
     <StyledNavContainer>
       <div>
@@ -23,15 +27,20 @@ export const GlobalNav = () => {
         </StyledMainNav>
         <StyledSecondaryNav>
           <ul>
-            {SECONDARY_NAVIGATION.map((item, key) => (
-              <li key={key}>
-                {item.path ? (
-                  <Link to={item.path}>{item.label}</Link>
-                ) : (
-                  <button onClick={item.action}>{item.label}</button>
-                )}
+            {isAdmin && (
+              <li>
+                <Link to="/Admin">Admin</Link>
               </li>
-            ))}
+            )}
+            <li>
+              <button
+                onClick={async () => {
+                  await firebaseAuth().signOut();
+                }}
+              >
+                Log Out
+              </button>
+            </li>
           </ul>
         </StyledSecondaryNav>
       </div>

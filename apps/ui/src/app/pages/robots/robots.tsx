@@ -18,8 +18,8 @@ export const Robots = () => {
     (async () => {
       if (authenticated) {
         try {
-          const result = await getRobots();
-          setRobots(await combineRobotsWithImages(result.data));
+          const response = await getRobots();
+          setRobots(await combineRobotsWithImages(response.data));
         } catch (error) {
           setError(true);
         } finally {

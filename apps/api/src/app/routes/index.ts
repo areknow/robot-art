@@ -11,4 +11,4 @@ router.post('/add-robot', authMiddleware, addRobot);
 router.put('/vote-robot/:id', authMiddleware, voteForRobotById);
 
 /** Auth */
-router.post('/status', checkStatus);
+router.get('/status', authMiddleware, checkStatus);
