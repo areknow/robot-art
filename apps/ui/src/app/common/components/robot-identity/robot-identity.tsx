@@ -5,19 +5,20 @@ interface RobotIdentityProps {
   robot: Robot;
 }
 
-const StyledRobotIdentity = styled.div`
-  img {
-    margin-top: 20px;
-    width: 100%;
-    margin: auto;
-  }
+const StyledImage = styled.div<{ url: string }>`
+  background-image: url(${({ url }) => url});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 320px;
+  margin-top: 20px;
 `;
 
 export const RobotIdentity = ({ robot }: RobotIdentityProps) => {
   return (
-    <StyledRobotIdentity>
+    <>
       <h3>{robot.name}</h3>
-      <img alt={robot.name} src={robot.imageUrl} />
-    </StyledRobotIdentity>
+      <StyledImage url={robot.imageUrl} />
+    </>
   );
 };
