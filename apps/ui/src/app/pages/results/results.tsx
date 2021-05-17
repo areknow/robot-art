@@ -21,9 +21,7 @@ export const Results = () => {
       if (authenticated) {
         try {
           const response = await getRobots();
-          setRobots(
-            sortByVoteCount(await combineRobotsWithImages(response.data))
-          );
+          setRobots(await combineRobotsWithImages(response.data));
         } catch (error) {
           setError(true);
         } finally {
@@ -41,7 +39,7 @@ export const Results = () => {
           <Loader />
         ) : (
           <Grid>
-            {robots.map((robot, key) => (
+            {sortByVoteCount(robots).map((robot, key) => (
               <ResultCard key={key} robot={robot} />
             ))}
           </Grid>

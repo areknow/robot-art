@@ -6,6 +6,7 @@ import { Page } from '../../common/layout';
 import {
   combineRobotsWithImages,
   getRobots,
+  sortByName,
   voteForRobot,
 } from '../../common/utils';
 
@@ -44,7 +45,7 @@ export const Robots = () => {
           <Loader />
         ) : (
           <Grid>
-            {robots.map((robot, key) => (
+            {sortByName(robots).map((robot, key) => (
               <VoteCard
                 key={key}
                 robot={robot}

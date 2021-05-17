@@ -1,3 +1,4 @@
+export * from './add-card/add-card';
 export * from './button/button';
 export * from './card/card';
 export * from './edit-card/edit-card';

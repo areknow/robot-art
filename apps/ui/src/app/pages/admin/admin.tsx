@@ -1,7 +1,12 @@
 import { Robot } from '@robot-art/api-interfaces';
 import { useEffect, useState } from 'react';
-import { EditCard, GlobalNav, Grid, Loader } from '../../common/components';
-import { AddCard } from '../../common/components/add-card/add-card';
+import {
+  AddCard,
+  EditCard,
+  GlobalNav,
+  Grid,
+  Loader,
+} from '../../common/components';
 import { storage } from '../../common/constants';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
@@ -11,6 +16,7 @@ import {
   deleteRobot,
   generateRandomHash,
   getRobots,
+  sortByName,
 } from '../../common/utils';
 
 export const Admin = () => {
@@ -74,7 +80,7 @@ export const Admin = () => {
         ) : (
           <Grid>
             <AddCard onAddClick={handleAdd} />
-            {robots.map((robot, key) => (
+            {sortByName(robots).map((robot, key) => (
               <EditCard
                 key={key}
                 robot={robot}
