@@ -1,28 +1,13 @@
 import { Robot } from '@robot-art/api-interfaces';
 import styled from 'styled-components';
-import { ProgressBar } from '../progress-bar/progress-bar';
+import { Card, ProgressBar, RobotIdentity } from '../../components';
 import { MAX_VOTES } from './constants';
 
 interface ResultCardProps {
   robot: Robot;
 }
 
-const StyledResultCard = styled.div`
-  background: #ffffff;
-  border: 1px solid #d8dadb;
-  box-sizing: border-box;
-  box-shadow: 0px 9px 15px -9px rgba(0, 0, 0, 0.12);
-  border-radius: 8px;
-  padding: 40px 24px 24px 24px;
-  text-align: center;
-  img {
-    margin-top: 20px;
-    width: 100%;
-    margin: auto;
-  }
-`;
-
-const StyledVoteCount = styled.div`
+const StyledContent = styled.div`
   h2,
   h3 {
     display: inline;
@@ -34,14 +19,13 @@ const StyledVoteCount = styled.div`
 
 export const ResultCard = ({ robot }: ResultCardProps) => {
   return (
-    <StyledResultCard>
-      <h3>{robot.name}</h3>
-      <img alt={robot.name} src={robot.imageUrl} />
-      <StyledVoteCount>
+    <Card>
+      <RobotIdentity robot={robot} />
+      <StyledContent>
         <h2>{robot.votes}</h2>
         <h3>/{MAX_VOTES}</h3>
-      </StyledVoteCount>
+      </StyledContent>
       <ProgressBar percentage={(robot.votes / MAX_VOTES) * 100} />
-    </StyledResultCard>
+    </Card>
   );
 };

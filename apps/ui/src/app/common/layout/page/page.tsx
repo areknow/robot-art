@@ -8,7 +8,8 @@ interface PageProps {
 
 const StyledPage = styled.div`
   max-width: 1200px;
-  margin: 50px auto 20px auto;
+  margin: 0 auto;
+  padding: 50px 0;
 `;
 
 export const Page = ({ title, children }: PageProps) => {
