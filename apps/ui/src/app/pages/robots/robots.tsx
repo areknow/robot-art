@@ -1,11 +1,13 @@
 import { Robot } from '@robot-art/api-interfaces';
 import { useEffect, useState } from 'react';
-import { GlobalNav, Grid, VoteCard } from '../../common/components';
-import { Loader } from '../../common/components/loader/loader';
+import { GlobalNav, Grid, Loader, VoteCard } from '../../common/components';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
-import { getRobots, voteForRobot } from '../../common/utils';
-import { combineRobotsWithImages } from '../../common/utils/robot-images';
+import {
+  combineRobotsWithImages,
+  getRobots,
+  voteForRobot,
+} from '../../common/utils';
 
 export const Robots = () => {
   const [loading, setLoading] = useState(true);
