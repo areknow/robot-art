@@ -4,6 +4,8 @@ import { Button, Card, RobotIdentity } from '../../components';
 
 interface EditCardProps {
   robot: Robot;
+  onEditClick: () => void;
+  onDeleteClick: () => void;
 }
 
 const StyledContent = styled.div`
@@ -15,13 +17,17 @@ const StyledContent = styled.div`
   }
 `;
 
-export const EditCard = ({ robot }: EditCardProps) => {
+export const EditCard = ({
+  robot,
+  onEditClick,
+  onDeleteClick,
+}: EditCardProps) => {
   return (
     <Card>
       <RobotIdentity robot={robot} />
       <StyledContent>
-        <Button onClick={() => null}>Edit</Button>
-        <Button variant="secondary" onClick={() => null}>
+        <Button onClick={onEditClick}>Edit</Button>
+        <Button variant="secondary" onClick={onDeleteClick}>
           Delete
         </Button>
       </StyledContent>

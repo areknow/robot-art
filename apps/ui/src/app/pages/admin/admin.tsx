@@ -27,6 +27,14 @@ export const Admin = () => {
     })();
   }, [authenticated]);
 
+  const editRobot = (id: string) => {
+    console.log(1);
+  };
+
+  const deleteRobot = (id: string) => {
+    console.log(2);
+  };
+
   return (
     <>
       <GlobalNav />
@@ -36,7 +44,12 @@ export const Admin = () => {
         ) : (
           <Grid>
             {robots.map((robot, key) => (
-              <EditCard key={key} robot={robot} />
+              <EditCard
+                key={key}
+                robot={robot}
+                onEditClick={() => editRobot(robot.id)}
+                onDeleteClick={() => deleteRobot(robot.id)}
+              />
             ))}
           </Grid>
         )}
