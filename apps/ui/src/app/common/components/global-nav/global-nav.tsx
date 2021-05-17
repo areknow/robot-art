@@ -9,6 +9,10 @@ import {
   StyledSecondaryNav,
 } from './styles';
 
+const logOut = async () => {
+  await firebaseAuth().signOut();
+};
+
 export const GlobalNav = () => {
   const { isAdmin } = useFirebaseAdmin();
 
@@ -29,17 +33,11 @@ export const GlobalNav = () => {
           <ul>
             {isAdmin && (
               <li>
-                <Link to="/Admin">Admin</Link>
+                <Link to="/admin">Admin</Link>
               </li>
             )}
             <li>
-              <button
-                onClick={async () => {
-                  await firebaseAuth().signOut();
-                }}
-              >
-                Log Out
-              </button>
+              <button onClick={logOut}>Log Out</button>
             </li>
           </ul>
         </StyledSecondaryNav>
