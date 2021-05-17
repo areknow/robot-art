@@ -17,9 +17,8 @@ const StyledResultCard = styled.div`
   text-align: center;
   img {
     margin-top: 20px;
-    width: auto;
+    width: 100%;
     margin: auto;
-    height: 320px;
   }
 `;
 
