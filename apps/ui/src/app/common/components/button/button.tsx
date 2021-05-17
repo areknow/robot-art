@@ -4,10 +4,11 @@ import styled, { css } from 'styled-components';
 interface ButtonProps {
   children: ReactNode;
   variant?: 'primary' | 'secondary';
+  disabled?: boolean;
   onClick: () => void;
 }
 
-const StyledButton = styled.button<Pick<ButtonProps, 'variant'>>`
+const StyledButton = styled.button<Pick<ButtonProps, 'variant' | 'disabled'>>`
   all: unset;
   background: #414242;
   border-radius: 8px;
@@ -33,15 +34,24 @@ const StyledButton = styled.button<Pick<ButtonProps, 'variant'>>`
         color: #2e2e2e;
       }
     `}
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background: #d8dadb;
+      border-color: #d8dadb;
+      color: #9c9d9e;
+      pointer-events: none;
+    `}
 `;
 
 export const Button = ({
   children,
   variant = 'primary',
+  disabled,
   onClick,
 }: ButtonProps) => {
   return (
-    <StyledButton variant={variant} onClick={onClick}>
+    <StyledButton variant={variant} disabled={disabled} onClick={onClick}>
       {children}
     </StyledButton>
   );

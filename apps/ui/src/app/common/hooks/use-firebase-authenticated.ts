@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { firebaseAuth } from '../constants';
 
 interface FirebaseUser {
+  uid: string;
   stsTokenManager: {
     accessToken: string;
   };
@@ -10,6 +11,7 @@ interface FirebaseUser {
 
 export const useFirebaseAuthenticated = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [userId, setUserId] = useState('');
 
   firebaseAuth().onAuthStateChanged(async (user) => {
     if (user) {
@@ -22,11 +24,12 @@ export const useFirebaseAuthenticated = () => {
   const user = firebaseAuth().currentUser?.toJSON() as FirebaseUser;
   useEffect(() => {
     if (user) {
+      setUserId(user?.uid);
       axios.defaults.headers.common = {
         Authorization: user?.stsTokenManager?.accessToken,
       };
     }
   }, [user]);
 
-  return { authenticated };
+  return { authenticated, userId };
 };

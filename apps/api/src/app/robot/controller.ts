@@ -52,6 +52,7 @@ export const addRobot = async (req: Request, res: Response) => {
 
 /**
  * Increment the vote count for a unique robot and update voters list
+ * Only allows voting if the voter is not already in the voters list
  * @returns list of robots
  */
 export const voteForRobotById = async (req: Request, res: Response) => {

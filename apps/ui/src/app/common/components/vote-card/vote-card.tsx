@@ -34,7 +34,9 @@ export const VoteCard = ({ robot, hasVoted, onActionClick }: VoteCardProps) => {
     <StyledVoteCard>
       <h3>{robot.name}</h3>
       <img alt={robot.name} src={robot.imageUrl} />
-      <Button onClick={onActionClick}>{hasVoted ? 'Vote cast' : 'Vote'}</Button>
+      <Button disabled={hasVoted} onClick={onActionClick}>
+        {hasVoted ? 'Vote cast' : 'Vote'}
+      </Button>
     </StyledVoteCard>
   );
 };

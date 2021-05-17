@@ -4,7 +4,8 @@ import { GlobalNav, Grid } from '../../common/components';
 import { ResultCard } from '../../common/components/result-card/result-card';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
-import { getRobotImageUrl, getRobots } from '../../common/utils';
+import { getRobots } from '../../common/utils';
+import { combineRobotsWithImages } from '../../common/utils/robot-images';
 import { sortByVoteCount } from '../../common/utils/sort-by-votes';
 
 export const Results = () => {
@@ -19,14 +20,9 @@ export const Results = () => {
       if (authenticated) {
         try {
           const result = await getRobots();
-          const dataWithImages = result.data.map(async (robot) => {
-            return {
-              ...robot,
-              imageUrl: await getRobotImageUrl(robot.image),
-            };
-          });
-          const robotsWithImages = await Promise.all(dataWithImages);
-          setRobots(sortByVoteCount(robotsWithImages));
+          setRobots(
+            sortByVoteCount(await combineRobotsWithImages(result.data))
+          );
         } catch (error) {
           setError(true);
         } finally {
