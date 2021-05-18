@@ -17,7 +17,7 @@ import {
   StyledLogo,
 } from './styles';
 
-export const Login = () => {
+export const Signin = () => {
   document.title = 'Robot Art';
 
   const [name, setName] = useState('');

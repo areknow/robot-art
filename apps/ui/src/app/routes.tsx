@@ -1,9 +1,9 @@
-import { Admin, Login, Results, Robots } from './pages';
+import { Admin, Results, Robots, Signin } from './pages';
 
 export const routes = [
   {
-    path: '/login',
-    component: <Login />,
+    path: '/signin',
+    component: <Signin />,
     protected: false,
   },
   {

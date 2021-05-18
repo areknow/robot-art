@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import { SIGN_IN_PATH } from './constants';
 
 interface ProtectedRouteProps {
   path: string;
@@ -13,8 +14,6 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps) => (
   <Route
     path={path}
-    render={() => (authenticated ? component : <Redirect to="/login" />)}
+    render={() => (authenticated ? component : <Redirect to={SIGN_IN_PATH} />)}
   />
 );
-
-//TODO: constant for /login
