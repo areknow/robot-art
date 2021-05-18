@@ -172,3 +172,24 @@ The project uses a NX monorepo to organize the client and server code. This allo
     - controller
   - routes
 - main.ts
+
+
+## Screenshots
+
+Sign in page
+![alt](.github/assets/sign-in.png)
+
+Sign in page with errors (dark mode)
+![alt](.github/assets/sign-in-validation.png)
+
+Robots list with voting option
+![alt](.github/assets/robots.png)
+
+Results list with (dark mode)
+![alt](.github/assets/results.png)
+
+Admin page with upload option
+![alt](.github/assets/admin.png)
+
+Admin page with edit option (dark mode)
+![alt](.github/assets/edit.png)
