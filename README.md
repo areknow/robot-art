@@ -8,9 +8,9 @@
 Fancy robots? Yeah we got those. Vote for your favorite and administer the content.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d113ed0e-d556-4955-9f46-46017107f9c4/deploy-status)](https://app.netlify.com/sites/robot-art/deploys)
-[![build workflow](https://github.com/areknow/info-wolf/actions/workflows/build.yml/badge.svg)](https://github.com/areknow/info-wolf/actions/workflows/build.yml)
-[![lint workflow](https://github.com/areknow/info-wolf/actions/workflows/lint.yml/badge.svg)](https://github.com/areknow/info-wolf/actions/workflows/lint.yml)
-[![test workflow](https://github.com/areknow/info-wolf/actions/workflows/test.yml/badge.svg)](https://github.com/areknow/info-wolf/actions/workflows/test.yml)
+[![build workflow](https://github.com/areknow/robot-art/actions/workflows/build.yml/badge.svg)](https://github.com/areknow/robot-art/actions/workflows/build.yml)
+[![lint workflow](https://github.com/areknow/robot-art/actions/workflows/lint.yml/badge.svg)](https://github.com/areknow/robot-art/actions/workflows/lint.yml)
+[![test workflow](https://github.com/areknow/robot-art/actions/workflows/test.yml/badge.svg)](https://github.com/areknow/robot-art/actions/workflows/test.yml)
 
 <div style="width: 600px">
 
