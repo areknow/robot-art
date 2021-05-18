@@ -5,10 +5,13 @@ export const decodeToken = async (token: string) => {
 };
 
 export const isAuthenticated = async (token: string) => {
+  console.log('isAuthenticated token:', token);
   try {
     const decodedToken = await decodeToken(token);
+    console.log(decodedToken);
     return decodedToken ? true : false;
   } catch (error) {
+    console.log(error);
     return false;
   }
 };

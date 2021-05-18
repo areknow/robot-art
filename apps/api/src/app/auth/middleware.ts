@@ -6,10 +6,11 @@ export const authGuard = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('authGuard');
   if (await isAuthenticated(req.headers.authorization)) {
     return next();
   } else {
-    console.log(req.headers.authorization);
+    console.log('authGuard token:', req.headers.authorization);
     const errorMessage = 'Unauthorized request.';
     const err = new Error(errorMessage);
     res.status(401).send({ error: errorMessage });
