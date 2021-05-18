@@ -1,7 +1,12 @@
 import { Robot } from '@robot-art/api-interfaces';
 import { useEffect, useState } from 'react';
 import { Error, Grid, Loader, ResultCard } from '../../common/components';
-import { PAGE_ERROR_CONTENT, PAGE_ERROR_LABEL } from '../../common/constants';
+import {
+  PAGE_ERROR_CONTENT,
+  PAGE_ERROR_LABEL,
+  PAGE_NO_ROBOTS_CONTENT,
+  PAGE_NO_ROBOTS_LABEL,
+} from '../../common/constants';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
 import {
@@ -39,11 +44,18 @@ export const Results = () => {
   } else if (!loading && !error) {
     return (
       <Page title="Results">
-        <Grid>
-          {sortByVoteCount(robots).map((robot, key) => (
-            <ResultCard key={key} robot={robot} />
-          ))}
-        </Grid>
+        {robots.length ? (
+          <Grid>
+            {sortByVoteCount(robots).map((robot, key) => (
+              <ResultCard key={key} robot={robot} />
+            ))}
+          </Grid>
+        ) : (
+          <Error
+            label={PAGE_NO_ROBOTS_LABEL}
+            content={PAGE_NO_ROBOTS_CONTENT}
+          />
+        )}
       </Page>
     );
   } else {
