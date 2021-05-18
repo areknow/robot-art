@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { isAdmin, isAuthenticated } from './service';
 
+/** Middleware to protect routes with authenticated requirements. */
 export const authGuard = async (
   req: Request,
   res: Response,
@@ -16,6 +17,7 @@ export const authGuard = async (
   }
 };
 
+/** Middleware to protect routes with administrator requirements. */
 export const adminGuard = async (
   req: Request,
   res: Response,

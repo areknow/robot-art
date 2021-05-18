@@ -1,5 +1,6 @@
 import admin = require('firebase-admin');
 
+/** Initialize firebase db connection. */
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: process.env.FIREBASE_PROJECT_ID,

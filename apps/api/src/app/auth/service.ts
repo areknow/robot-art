@@ -1,9 +1,11 @@
 import admin = require('firebase-admin');
 
+/** Decode the token through firebase. */
 export const decodeToken = async (token: string) => {
   return await admin.auth().verifyIdToken(token);
 };
 
+/** Check if token is decoded successfully. */
 export const isAuthenticated = async (token: string) => {
   try {
     const decodedToken = await decodeToken(token);
@@ -14,6 +16,7 @@ export const isAuthenticated = async (token: string) => {
   }
 };
 
+/** Check if decoded token matches admin uid. */
 export const isAdmin = async (token: string) => {
   const decodedToken = await decodeToken(token);
   return decodedToken.uid === process.env.FIREBASE_ADMIN_ID;
