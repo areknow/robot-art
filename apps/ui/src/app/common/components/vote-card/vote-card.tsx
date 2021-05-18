@@ -1,4 +1,5 @@
 import { Robot } from '@robot-art/api-interfaces';
+import { memo } from 'react';
 import styled from 'styled-components';
 import { Button, Card, RobotIdentity } from '../../components';
 
@@ -15,15 +16,17 @@ const StyledContent = styled.div`
   }
 `;
 
-export const VoteCard = ({ robot, hasVoted, onActionClick }: VoteCardProps) => {
-  return (
-    <Card>
-      <RobotIdentity robot={robot} />
-      <StyledContent>
-        <Button disabled={hasVoted} onClick={onActionClick}>
-          {hasVoted ? 'Vote cast' : 'Vote'}
-        </Button>
-      </StyledContent>
-    </Card>
-  );
-};
+export const VoteCard = memo(
+  ({ robot, hasVoted, onActionClick }: VoteCardProps) => {
+    return (
+      <Card>
+        <RobotIdentity robot={robot} />
+        <StyledContent>
+          <Button disabled={hasVoted} onClick={onActionClick}>
+            {hasVoted ? 'Vote cast' : 'Vote'}
+          </Button>
+        </StyledContent>
+      </Card>
+    );
+  }
+);

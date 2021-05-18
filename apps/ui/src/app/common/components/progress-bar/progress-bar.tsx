@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import { MAX_PROGRESS_VALUE } from './constants';
 
@@ -25,8 +26,8 @@ const StyledProgressBar = styled.progress`
   }
 `;
 
-export const ProgressBar = ({ percentage }: ProgressBarProps) => {
+export const ProgressBar = memo(({ percentage }: ProgressBarProps) => {
   return (
     <StyledProgressBar id="file" value={percentage} max={MAX_PROGRESS_VALUE} />
   );
-};
+});

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { ReactComponent as UploadIcon } from '../../../../assets/upload.svg';
 import { Button, Card } from '../../components';
@@ -15,7 +15,7 @@ interface AddCardProps {
   onAddClick: (file: File, name: string) => void;
 }
 
-export const AddCard = ({ onAddClick }: AddCardProps) => {
+export const AddCard = memo(({ onAddClick }: AddCardProps) => {
   const [name, setName] = useState('');
   const [file, setFile] = useState<File | undefined>(undefined);
 
@@ -64,4 +64,4 @@ export const AddCard = ({ onAddClick }: AddCardProps) => {
       </StyledContent>
     </Card>
   );
-};
+});

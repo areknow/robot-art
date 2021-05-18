@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as MondoLogo } from '../../../../assets/mondo-logo.svg';
 import { firebaseAuth } from '../../constants';
@@ -19,7 +20,7 @@ const formatAvatar = (email: string) => {
   return email.slice(0, 1).toUpperCase();
 };
 
-export const GlobalNav = () => {
+export const GlobalNav = memo(() => {
   const { isAdmin } = useFirebaseAdmin();
   const { user } = useFirebaseAuthenticated();
 
@@ -60,4 +61,4 @@ export const GlobalNav = () => {
       </div>
     </StyledNavContainer>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface GridProps {
@@ -13,6 +13,6 @@ const StyledGrid = styled.div`
   grid-row-gap: 34px;
 `;
 
-export const Grid = ({ children }: GridProps) => {
+export const Grid = memo(({ children }: GridProps) => {
   return <StyledGrid>{children}</StyledGrid>;
-};
+});

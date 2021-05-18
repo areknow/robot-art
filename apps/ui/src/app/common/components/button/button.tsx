@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 interface ButtonProps {
@@ -65,23 +65,19 @@ const StyledContentWithButton = styled.div`
   }
 `;
 
-export const Button = ({
-  children,
-  variant = 'primary',
-  disabled,
-  icon,
-  onClick,
-}: ButtonProps) => {
-  return (
-    <StyledButton variant={variant} disabled={disabled} onClick={onClick}>
-      {icon ? (
-        <StyledContentWithButton>
-          {icon}
-          {children}
-        </StyledContentWithButton>
-      ) : (
-        children
-      )}
-    </StyledButton>
-  );
-};
+export const Button = memo(
+  ({ children, variant = 'primary', disabled, icon, onClick }: ButtonProps) => {
+    return (
+      <StyledButton variant={variant} disabled={disabled} onClick={onClick}>
+        {icon ? (
+          <StyledContentWithButton>
+            {icon}
+            {children}
+          </StyledContentWithButton>
+        ) : (
+          children
+        )}
+      </StyledButton>
+    );
+  }
+);

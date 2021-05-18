@@ -1,4 +1,5 @@
 import { Robot } from '@robot-art/api-interfaces';
+import { memo } from 'react';
 import styled from 'styled-components';
 import { Card, ProgressBar, RobotIdentity } from '../../components';
 import { MAX_VOTES } from './constants';
@@ -17,7 +18,7 @@ const StyledContent = styled.div`
   }
 `;
 
-export const ResultCard = ({ robot }: ResultCardProps) => {
+export const ResultCard = memo(({ robot }: ResultCardProps) => {
   return (
     <Card>
       <RobotIdentity robot={robot} />
@@ -28,4 +29,4 @@ export const ResultCard = ({ robot }: ResultCardProps) => {
       <ProgressBar percentage={(robot.votes / MAX_VOTES) * 100} />
     </Card>
   );
-};
+});

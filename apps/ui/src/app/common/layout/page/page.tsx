@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface PageProps {
@@ -12,7 +12,7 @@ const StyledPage = styled.div`
   padding: 50px 0;
 `;
 
-export const Page = ({ title, children }: PageProps) => {
+export const Page = memo(({ title, children }: PageProps) => {
   document.title = `Robot Art | ${title}`;
 
   return (
@@ -21,4 +21,4 @@ export const Page = ({ title, children }: PageProps) => {
       {children}
     </StyledPage>
   );
-};
+});

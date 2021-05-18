@@ -1,4 +1,5 @@
 import { Robot } from '@robot-art/api-interfaces';
+import { memo } from 'react';
 import styled from 'styled-components';
 
 interface RobotIdentityProps {
@@ -14,11 +15,11 @@ const StyledImage = styled.div<{ url: string }>`
   margin-top: 20px;
 `;
 
-export const RobotIdentity = ({ robot }: RobotIdentityProps) => {
+export const RobotIdentity = memo(({ robot }: RobotIdentityProps) => {
   return (
     <>
       <h3>{robot.name}</h3>
       <StyledImage url={robot.imageUrl} />
     </>
   );
-};
+});

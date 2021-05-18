@@ -1,4 +1,5 @@
 import { Robot } from '@robot-art/api-interfaces';
+import { memo } from 'react';
 import styled from 'styled-components';
 import { Button, Card, RobotIdentity } from '../../components';
 
@@ -17,20 +18,18 @@ const StyledContent = styled.div`
   }
 `;
 
-export const EditCard = ({
-  robot,
-  onEditClick,
-  onDeleteClick,
-}: EditCardProps) => {
-  return (
-    <Card>
-      <RobotIdentity robot={robot} />
-      <StyledContent>
-        <Button onClick={onEditClick}>Edit</Button>
-        <Button variant="secondary" onClick={onDeleteClick}>
-          Delete
-        </Button>
-      </StyledContent>
-    </Card>
-  );
-};
+export const EditCard = memo(
+  ({ robot, onEditClick, onDeleteClick }: EditCardProps) => {
+    return (
+      <Card>
+        <RobotIdentity robot={robot} />
+        <StyledContent>
+          <Button onClick={onEditClick}>Edit</Button>
+          <Button variant="secondary" onClick={onDeleteClick}>
+            Delete
+          </Button>
+        </StyledContent>
+      </Card>
+    );
+  }
+);

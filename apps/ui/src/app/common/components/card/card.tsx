@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface CardProps {
@@ -15,6 +15,6 @@ const StyledCard = styled.div`
   text-align: center;
 `;
 
-export const Card = ({ children }: CardProps) => {
+export const Card = memo(({ children }: CardProps) => {
   return <StyledCard>{children}</StyledCard>;
-};
+});
