@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../../assets/logo.svg';
 import { firebaseAuth } from '../../constants';
 import { useFirebaseAdmin, useFirebaseAuthenticated } from '../../hooks';
@@ -10,7 +10,7 @@ import {
   StyledSecondaryNav,
 } from './styles';
 
-const logOut = async () => {
+const signOut = async () => {
   await firebaseAuth().signOut();
 };
 
@@ -30,7 +30,9 @@ export const GlobalNav = () => {
           <ul>
             {MAIN_NAVIGATION.map((item, key) => (
               <li key={key}>
-                <Link to={item.path}>{item.label}</Link>
+                <NavLink to={item.path} exact activeClassName="active">
+                  {item.label}
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -40,11 +42,11 @@ export const GlobalNav = () => {
             <ul>
               {isAdmin && (
                 <li>
-                  <Link to="/admin">Admin</Link>
+                  <NavLink to="/admin">Admin</NavLink>
                 </li>
               )}
               <li>
-                <button onClick={logOut}>Log out</button>
+                <button onClick={signOut}>Sign out</button>
               </li>
             </ul>
             <StyledAvatar url={user.photoURL}>

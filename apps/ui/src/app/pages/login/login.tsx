@@ -28,7 +28,7 @@ export const Login = () => {
 
   const { authenticated } = useFirebaseAuthenticated();
 
-  const loginWithGoogle = async () => {
+  const signInWithGoogle = async () => {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     await firebase.auth().signInWithPopup(googleAuthProvider);
   };
@@ -46,7 +46,7 @@ export const Login = () => {
     }
   };
 
-  const loginWithEmailPass = async () => {
+  const SignInWithEmailPass = async () => {
     setFormDirty(true);
     if (!email.length || !password.length) {
       setFormError('Please ensure the form is not empty.');
@@ -64,7 +64,7 @@ export const Login = () => {
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
     if (email && password && event.key === 'Enter') {
-      loginWithEmailPass();
+      SignInWithEmailPass();
       setFormDirty(true);
     }
   };
@@ -121,10 +121,10 @@ export const Login = () => {
               {!isRegistering && (
                 <Button
                   onClick={async () => {
-                    loginWithEmailPass();
+                    SignInWithEmailPass();
                   }}
                 >
-                  Log in
+                  Sign in
                 </Button>
               )}
               {isRegistering && (
@@ -139,7 +139,7 @@ export const Login = () => {
               <Button
                 variant="secondary"
                 onClick={async () => {
-                  loginWithGoogle();
+                  signInWithGoogle();
                 }}
               >
                 Authenticate with Google
@@ -167,7 +167,7 @@ export const Login = () => {
                         setIsRegistering(false);
                       }}
                     >
-                      Log in
+                      Sign in
                     </button>
                   </div>
                 )}

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledNavContainer = styled.div`
@@ -23,6 +24,18 @@ export const StyledNavContainer = styled.div`
       a {
         color: inherit;
         text-decoration: none;
+        &.active {
+          position: relative;
+          &:after {
+            background-color: #414242;
+            content: '';
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+          }
+        }
       }
     }
   }
@@ -58,6 +71,11 @@ export const StyledSecondaryNav = styled.div`
       &:not(:last-child) {
         margin-right: 24px;
       }
+      a {
+        &.active:after {
+          background-color: #737475;
+        }
+      }
       button {
         all: unset;
         cursor: pointer;
@@ -82,3 +100,5 @@ export const StyledAvatar = styled.div<{ url: string }>`
   justify-content: center;
   font-weight: bold;
 `;
+
+export const StyledLink = styled(NavLink)``;
