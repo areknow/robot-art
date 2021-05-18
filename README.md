@@ -193,3 +193,9 @@ Admin page with upload option
 
 Admin page with edit option (dark mode)
 ![alt](.github/assets/edit.png)
+
+Robots database table
+![alt](.github/assets/robots-table.png)
+
+Image storage bucket
+![alt](.github/assets/storage-bucket.png)
