@@ -83,7 +83,7 @@ export const Admin = () => {
     return (
       <Page title="Admin">
         <Grid>
-          <AddCard onAddClick={handleAdd} />
+          <AddCard onAdd={handleAdd} />
           {sortByName(robots).map((robot, key) => (
             <EditCard
               key={key}

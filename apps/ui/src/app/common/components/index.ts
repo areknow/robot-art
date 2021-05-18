@@ -11,4 +11,5 @@ export * from './progress-bar/progress-bar';
 export * from './protected-route/protected-route';
 export * from './result-card/result-card';
 export * from './robot-identity/robot-identity';
+export * from './upload/upload';
 export * from './vote-card/vote-card';
