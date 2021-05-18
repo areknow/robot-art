@@ -1,4 +1,4 @@
-import { Admin, Results, Robots, Signin } from '../../pages';
+import { Admin, Results, Robots, SignIn } from '../../pages';
 
 /**
  * The routing structure for the applications.
@@ -7,7 +7,7 @@ import { Admin, Results, Robots, Signin } from '../../pages';
 export const routes = [
   {
     path: '/signin',
-    component: <Signin />,
+    component: <SignIn />,
     protected: false,
   },
   {

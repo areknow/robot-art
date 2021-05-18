@@ -19,7 +19,7 @@ import {
   StyledLogo,
 } from './styles';
 
-export const Signin = () => {
+export const SignIn = () => {
   // Hard code the document title since this page does not use the page layout.
   document.title = 'Robot Art';
 
