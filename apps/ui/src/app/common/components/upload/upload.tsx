@@ -3,7 +3,14 @@ import { useDropzone } from 'react-dropzone';
 import { ReactComponent as UploadIcon } from '../../../../assets/upload.svg';
 import { Button } from '../../components';
 import { Input } from '../input/input';
-import { ACCEPTED_IMAGE_MIME, DRAG_DROP_LABEL } from './constants';
+import {
+  ACCEPTED_IMAGE_MIME,
+  ADD_ROBOT_LABEL,
+  CANCEL_LABEL,
+  CLEAR_LABEL,
+  DRAG_DROP_LABEL,
+  SAVE_ROBOT_LABEL,
+} from './constants';
 import {
   StyledAddButton,
   StyledButtons,
@@ -13,11 +20,19 @@ import {
 } from './styles';
 
 interface UploadProps {
+  defaultName?: string;
+  editing?: boolean;
   onUpload: (file: File, name: string) => void;
+  onClearClick?: () => void;
 }
 
-export const Upload = ({ onUpload }: UploadProps) => {
-  const [name, setName] = useState('');
+export const Upload = ({
+  defaultName = '',
+  editing = false,
+  onClearClick = () => null,
+  onUpload,
+}: UploadProps) => {
+  const [name, setName] = useState(defaultName);
   const [file, setFile] = useState<File | undefined>(undefined);
 
   const {
@@ -39,6 +54,15 @@ export const Upload = ({ onUpload }: UploadProps) => {
   const clearValues = () => {
     setName('');
     setFile(undefined);
+    onClearClick();
+  };
+
+  const disabledButtonState = () => {
+    if (editing) {
+      return false;
+    } else {
+      return name.length === 0 || file === undefined;
+    }
   };
 
   return (
@@ -50,13 +74,15 @@ export const Upload = ({ onUpload }: UploadProps) => {
         <div>{file ? file.name : DRAG_DROP_LABEL}</div>
       </StyledUpload>
       <StyledButtons>
-        <StyledClearButton onClick={clearValues}>Clear</StyledClearButton>
+        <StyledClearButton onClick={clearValues}>
+          {editing ? CANCEL_LABEL : CLEAR_LABEL}
+        </StyledClearButton>
         <StyledAddButton>
           <Button
-            disabled={name.length === 0 || file === undefined}
+            disabled={disabledButtonState()}
             onClick={() => onUpload(file as File, name)}
           >
-            Add Robot
+            {editing ? SAVE_ROBOT_LABEL : ADD_ROBOT_LABEL}
           </Button>
         </StyledAddButton>
       </StyledButtons>

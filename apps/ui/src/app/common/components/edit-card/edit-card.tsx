@@ -1,12 +1,12 @@
 import { Robot } from '@robot-art/api-interfaces';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import styled from 'styled-components';
-import { Button, Card, RobotIdentity } from '../../components';
+import { Button, Card, RobotIdentity, Upload } from '../../components';
 
 interface EditCardProps {
   robot: Robot;
-  onEditClick: () => void;
   onDeleteClick: () => void;
+  onEditAddClick: (file: File, name: string) => void;
 }
 
 const StyledContent = styled.div`
@@ -19,16 +19,32 @@ const StyledContent = styled.div`
 `;
 
 export const EditCard = memo(
-  ({ robot, onEditClick, onDeleteClick }: EditCardProps) => {
+  ({ robot, onEditAddClick, onDeleteClick }: EditCardProps) => {
+    const [isEditing, setIsEditing] = useState(false);
+
     return (
       <Card>
-        <RobotIdentity robot={robot} />
-        <StyledContent>
-          <Button onClick={onEditClick}>Edit</Button>
-          <Button variant="secondary" onClick={onDeleteClick}>
-            Delete
-          </Button>
-        </StyledContent>
+        {isEditing ? (
+          <>
+            <h3>Edit Robot</h3>
+            <Upload
+              defaultName={robot.name}
+              editing
+              onClearClick={() => setIsEditing(false)}
+              onUpload={onEditAddClick}
+            />
+          </>
+        ) : (
+          <>
+            <RobotIdentity robot={robot} />
+            <StyledContent>
+              <Button onClick={() => setIsEditing(true)}>Edit</Button>
+              <Button variant="secondary" onClick={onDeleteClick}>
+                Delete
+              </Button>
+            </StyledContent>
+          </>
+        )}
       </Card>
     );
   }

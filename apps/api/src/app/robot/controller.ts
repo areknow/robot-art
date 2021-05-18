@@ -54,6 +54,19 @@ export const addRobot = async (req: Request, res: Response) => {
 };
 
 /**
+ * Edit a existing robot by id
+ * @returns list of robots
+ */
+export const editRobot = async (req: Request, res: Response) => {
+  try {
+    await updateDocumentInCollection(COLLECTION, req.params.id, req.body);
+    return res.status(200).send(await getDocumentsFromCollection(COLLECTION));
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
+/**
  * Remove robot by id
  * @returns list of robots
  */

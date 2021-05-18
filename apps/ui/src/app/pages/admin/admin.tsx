@@ -7,20 +7,17 @@ import {
   Grid,
   Loader,
 } from '../../common/components';
-import {
-  PAGE_ERROR_CONTENT,
-  PAGE_ERROR_LABEL,
-  storage,
-} from '../../common/constants';
+import { PAGE_ERROR_CONTENT, PAGE_ERROR_LABEL } from '../../common/constants';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
 import {
   addRobot,
   combineRobotsWithImages,
   deleteRobot,
-  generateRandomHash,
+  editRobot,
   getRobots,
   sortByName,
+  storeImage,
 } from '../../common/utils';
 
 export const Admin = () => {
@@ -48,8 +45,7 @@ export const Admin = () => {
   const handleAdd = async (file: File, name: string) => {
     setLoading(true);
     try {
-      const hash = generateRandomHash();
-      await storage.child(hash).put(file);
+      const hash = await storeImage(file);
       const response = await addRobot(name, hash);
       setRobots(await combineRobotsWithImages(response.data));
     } catch (error) {
@@ -59,8 +55,22 @@ export const Admin = () => {
     }
   };
 
-  const handleEdit = (id: string) => {
-    console.log(id);
+  const handleEditAdd = async (robot: Robot, file: File, name: string) => {
+    setLoading(true);
+    try {
+      let image: string;
+      if (file) {
+        image = await storeImage(file);
+      } else {
+        image = robot.image;
+      }
+      const response = await editRobot(robot.id, name, image);
+      setRobots(await combineRobotsWithImages(response.data));
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDelete = async (id: string) => {
@@ -88,7 +98,7 @@ export const Admin = () => {
             <EditCard
               key={key}
               robot={robot}
-              onEditClick={() => handleEdit(robot.id)}
+              onEditAddClick={(file, name) => handleEditAdd(robot, file, name)}
               onDeleteClick={() => handleDelete(robot.id)}
             />
           ))}
