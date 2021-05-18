@@ -2,10 +2,15 @@ import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 interface InputProps {
+  /** The value string of the text input. Controlled by parent. */
   value: string;
+  /** The floating placeholder label. */
   label: string;
+  /** JSX.IntrinsicElements.input `type`. */
   type?: string;
+  /** Whether or not the input should show a red outline for validation. */
   invalid?: boolean;
+  /** The event fired when the input is interacted with. */
   onChange: (value: string) => void;
 }
 

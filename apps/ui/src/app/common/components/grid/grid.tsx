@@ -2,6 +2,7 @@ import { memo, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface GridProps {
+  /** The content displayed in the grid itself.  */
   children: ReactNode;
 }
 

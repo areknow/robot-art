@@ -2,7 +2,9 @@ import { memo, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface PageProps {
+  /** The title of the page to be displayed in the heading and the document. */
   title: string;
+  /** The content displayed in the page itself.  */
   children: ReactNode;
 }
 
@@ -19,6 +21,7 @@ const StyledPage = styled.div`
 `;
 
 export const Page = memo(({ title, children }: PageProps) => {
+  // Set the document title.
   document.title = `Robot Art | ${title}`;
 
   return (

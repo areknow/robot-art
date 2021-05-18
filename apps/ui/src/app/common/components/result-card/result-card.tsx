@@ -5,6 +5,7 @@ import { Card, ProgressBar, RobotIdentity } from '../../components';
 import { MAX_VOTES } from './constants';
 
 interface ResultCardProps {
+  /** The robot to display results for. */
   robot: Robot;
 }
 
@@ -26,7 +27,10 @@ export const ResultCard = memo(({ robot }: ResultCardProps) => {
         <h2>{robot.votes}</h2>
         <h3>/{MAX_VOTES}</h3>
       </StyledContent>
-      <ProgressBar percentage={(robot.votes / MAX_VOTES) * 100} />
+      <ProgressBar
+        percentage={(robot.votes / MAX_VOTES) * 100}
+        max={MAX_VOTES}
+      />
     </Card>
   );
 });

@@ -22,6 +22,7 @@ export const Results = () => {
 
   const { authenticated } = useFirebaseAuthenticated();
 
+  /** Effect: If authenticated, fetch the list of robots with images. */
   useEffect(() => {
     (async () => {
       if (authenticated) {

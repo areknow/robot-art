@@ -2,10 +2,15 @@ import { memo, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 interface ButtonProps {
+  /** The content displayed in the button itself.  */
   children: ReactNode;
+  /** The button variant theme. */
   variant?: 'primary' | 'secondary';
+  /** The button disabled state control. */
   disabled?: boolean;
+  /** An optional icon that will be displayed to the left of the content. */
   icon?: ReactNode;
+  /** The event fired when the button is clicked. */
   onClick: () => void;
 }
 

@@ -3,6 +3,7 @@ import { Card } from '../../components';
 import { Upload } from '../upload/upload';
 
 interface AddCardProps {
+  /** Event triggered when the card 'Add Robot' button is clicked. */
   onAdd: (file: File, name: string) => void;
 }
 

@@ -1,9 +1,11 @@
 import { memo } from 'react';
 import styled from 'styled-components';
-import { MAX_PROGRESS_VALUE } from './constants';
 
 interface ProgressBarProps {
+  /** The percentage of the progress bar completion. */
   percentage: number;
+  /** The maximum value that the progress bar can reach. */
+  max: number;
 }
 
 const StyledProgressBar = styled.progress`
@@ -15,7 +17,7 @@ const StyledProgressBar = styled.progress`
   height: 34px;
   width: 100%;
   margin-top: 10px;
-
+  // Custom HTML progress element styling
   ::-webkit-progress-bar {
     background-color: transparent;
   }
@@ -26,8 +28,6 @@ const StyledProgressBar = styled.progress`
   }
 `;
 
-export const ProgressBar = memo(({ percentage }: ProgressBarProps) => {
-  return (
-    <StyledProgressBar id="file" value={percentage} max={MAX_PROGRESS_VALUE} />
-  );
+export const ProgressBar = memo(({ percentage, max }: ProgressBarProps) => {
+  return <StyledProgressBar id="file" value={percentage} max={max} />;
 });

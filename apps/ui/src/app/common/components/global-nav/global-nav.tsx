@@ -15,10 +15,12 @@ import {
   StyledSecondaryNav,
 } from './styles';
 
+/** The action when the sign out link is clicked. */
 const signOut = async () => {
   await firebaseAuth().signOut();
 };
 
+/** The avatar string formatting when no user picture is found. */
 const formatAvatar = (email: string) => {
   return email?.slice(0, 1).toUpperCase();
 };
@@ -29,6 +31,7 @@ export const GlobalNav = memo(() => {
   const { isAdmin } = useFirebaseAdmin();
   const { user } = useFirebaseAuthenticated();
 
+  /** Create reusable main nav links. */
   const MainNavLinks = () => (
     <>
       {MAIN_NAVIGATION.map((item, key) => (
@@ -40,6 +43,8 @@ export const GlobalNav = memo(() => {
       ))}
     </>
   );
+
+  /** Create reusable secondary nav links/buttons. */
   const SecondaryNavLinks = () => (
     <>
       {isAdmin && (

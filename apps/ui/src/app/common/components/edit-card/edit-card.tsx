@@ -4,8 +4,11 @@ import styled from 'styled-components';
 import { Button, Card, RobotIdentity, Upload } from '../../components';
 
 interface EditCardProps {
+  /** The robot to edit. */
   robot: Robot;
+  /** The event fired when the 'Delete' button is clicked. */
   onDeleteClick: () => void;
+  /** The event fired when the editing/uploading is completed. */
   onEditAddClick: (file: File, name: string) => void;
 }
 

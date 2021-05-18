@@ -1,5 +1,10 @@
 import { Robot } from '@robot-art/api-interfaces';
 
+/**
+ * Sort an array of robots by their names.
+ * @param list The list of robots to sort.
+ * @returns The list of sorted robots.
+ */
 export const sortByName = (list: Robot[]) => {
   return list.sort((a, b) => {
     const nameA = a.name.toUpperCase();

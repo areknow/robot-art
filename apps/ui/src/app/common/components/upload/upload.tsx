@@ -20,9 +20,13 @@ import {
 } from './styles';
 
 interface UploadProps {
+  /** The optional name to preload the edit input with. */
   defaultName?: string;
+  /** Whether or not the component is acting on a fresh robot or an existing robot. */
   editing?: boolean;
+  /** The event fired when the upload completes. */
   onUpload: (file: File, name: string) => void;
+  /** The event fired when the clear button is clicked. */
   onClearClick?: () => void;
 }
 
@@ -42,21 +46,30 @@ export const Upload = ({
     getInputProps,
   } = useDropzone({
     maxFiles: 1,
+    // Only accept image file types
     accept: ACCEPTED_IMAGE_MIME,
   });
 
+  /** Effect: when the drop zone updates, store the files data. */
   useEffect(() => {
     if (acceptedFiles[0]) {
       setFile(acceptedFiles[0]);
     }
   }, [acceptedFiles]);
 
+  /** Reset the upload form. */
   const clearValues = () => {
     setName('');
     setFile(undefined);
     onClearClick();
   };
 
+  /**
+   * Decide whether or not the save button should be disabled.
+   * If the robot is being edited, don't disable at all.
+   * If the robot is being added, only enable when the form is complete.
+   * @returns
+   */
   const disabledButtonState = () => {
     if (editing) {
       return false;

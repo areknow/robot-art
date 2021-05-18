@@ -3,6 +3,7 @@ import { memo } from 'react';
 import styled from 'styled-components';
 
 interface RobotIdentityProps {
+  /** The robot to identify. */
   robot: Robot;
 }
 
@@ -15,6 +16,10 @@ const StyledImage = styled.div<{ url: string }>`
   margin: 20px 0;
 `;
 
+/**
+ * The robot identity component is a reusable insert for various card components
+ * to reduce the common styling for the image and the header presentation.
+ */
 export const RobotIdentity = memo(({ robot }: RobotIdentityProps) => {
   return (
     <>

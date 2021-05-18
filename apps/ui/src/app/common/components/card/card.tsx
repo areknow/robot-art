@@ -2,6 +2,7 @@ import { memo, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface CardProps {
+  /** The content displayed in the card itself.  */
   children: ReactNode;
 }
 

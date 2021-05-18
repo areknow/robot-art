@@ -25,6 +25,7 @@ export const Robots = () => {
 
   const { authenticated, userId } = useFirebaseAuthenticated();
 
+  /** Effect: If authenticated, fetch the list of robots with images. */
   useEffect(() => {
     (async () => {
       if (authenticated) {
@@ -40,8 +41,14 @@ export const Robots = () => {
     })();
   }, [authenticated]);
 
+  /**
+   * Handle the robot voting event.
+   * @param id
+   */
   const handleVote = async (id: string) => {
+    // Show the voting spinner.
     setVoting(true);
+    // Store the ID of the robot being voted on for comparison.
     setVotingId(id);
     try {
       const result = await voteForRobot(id);

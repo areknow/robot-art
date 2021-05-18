@@ -27,6 +27,7 @@ export const Admin = () => {
 
   const { authenticated } = useFirebaseAuthenticated();
 
+  /** Effect: If authenticated, fetch the list of robots with images. */
   useEffect(() => {
     (async () => {
       if (authenticated) {
@@ -42,6 +43,11 @@ export const Admin = () => {
     })();
   }, [authenticated]);
 
+  /**
+   * Handle the add robot event.
+   * @param file The file content of the new robot image.
+   * @param name The name of the new robot.
+   */
   const handleAdd = async (file: File, name: string) => {
     setLoading(true);
     try {
@@ -55,13 +61,21 @@ export const Admin = () => {
     }
   };
 
+  /**
+   * Handle the edit robot event.
+   * @param robot The robot being edited.
+   * @param file The file content of the edited robot image.
+   * @param name The name of the robot to edit.
+   */
   const handleEditAdd = async (robot: Robot, file: File, name: string) => {
     setLoading(true);
     try {
       let image: string;
       if (file) {
+        // Only store a new image if the image has been edited.
         image = await storeImage(file);
       } else {
+        // If no image has been uploaded, use the existing image.
         image = robot.image;
       }
       const response = await editRobot(robot.id, name, image);
@@ -73,6 +87,10 @@ export const Admin = () => {
     }
   };
 
+  /**
+   * Handle the delete robot event.
+   * @param id The id of the robot being deleted.
+   */
   const handleDelete = async (id: string) => {
     setLoading(true);
     try {

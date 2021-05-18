@@ -20,6 +20,7 @@ import {
 } from './styles';
 
 export const Signin = () => {
+  // Hard code the document title since this page does not use the page layout.
   document.title = 'Robot Art';
 
   const [name, setName] = useState('');
@@ -31,11 +32,13 @@ export const Signin = () => {
 
   const { authenticated } = useFirebaseAuthenticated();
 
+  /** Perform sign in with google. */
   const signInWithGoogle = async () => {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     await firebase.auth().signInWithPopup(googleAuthProvider);
   };
 
+  /** Perform registration with email/password. */
   const registerWithEmailPass = async () => {
     setFormDirty(true);
     if (!email.length || !password.length) {
@@ -49,11 +52,13 @@ export const Signin = () => {
     }
   };
 
+  /** Perform sign in with email/password. */
   const SignInWithEmailPass = async () => {
     setFormDirty(true);
     if (!email.length || !password.length) {
       setFormError('Please ensure the form is not empty.');
     } else {
+      // If the 'Admin' user name is found, replace it with the full email address.
       const user = email === ADMIN_USER_NAME ? ADMIN_EMAIL : email;
       try {
         await firebase.auth().signInWithEmailAndPassword(user, password);
@@ -63,6 +68,7 @@ export const Signin = () => {
     }
   };
 
+  /** React to the input key strokes and trigger the sign in when enter key is recorded. */
   const handleInputKeyPress = async (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
@@ -72,6 +78,7 @@ export const Signin = () => {
     }
   };
 
+  /** Reset the form. */
   const resetForm = () => {
     setFormDirty(false);
     setFormError('');

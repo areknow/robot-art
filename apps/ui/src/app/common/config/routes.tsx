@@ -1,5 +1,9 @@
 import { Admin, Results, Robots, Signin } from '../../pages';
 
+/**
+ * The routing structure for the applications.
+ * Includes conditional support for protected routes.
+ */
 export const routes = [
   {
     path: '/signin',

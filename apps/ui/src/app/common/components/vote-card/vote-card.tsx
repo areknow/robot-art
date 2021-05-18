@@ -5,9 +5,13 @@ import { ReactComponent as Spinner } from '../../../../assets/spinner.svg';
 import { Button, Card, RobotIdentity } from '../../components';
 
 interface VoteCardProps {
+  /** The robot to vote on. */
   robot: Robot;
+  /** Whether or not the user has already voted for this robot. */
   hasVoted: boolean;
+  /** Whether or not the voting request is pending completion. */
   voting: boolean;
+  /** The event fired when the voting action is clicked. */
   onActionClick: () => void;
 }
 

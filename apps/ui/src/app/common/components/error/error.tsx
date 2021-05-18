@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { ReactComponent as WarningIcon } from '../../../../assets/warning.svg';
 
 interface ErrorProps {
+  /** The top label of the error message. */
   label: string;
+  /** The content in the bottom of the error message. */
   content: ReactNode;
 }
 

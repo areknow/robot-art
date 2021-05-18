@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useColorScheme } from 'use-color-scheme';
 import { DEFAULT_STATE, GlobalStyles } from './constants';
 import { DarkModeContextModel, DarkModeContextType } from './types';
@@ -9,7 +9,7 @@ export const DarkModeContext = createContext<DarkModeContextType>({
 
 /**
  * This provider allows all descendants to get access to the dark mode
- * context and the ability to manually mutate the dark mode state
+ * context which reacts to the user system color scheme preference.
  * @returns Children of the provider
  */
 export const DarkModeProvider = ({
@@ -46,13 +46,4 @@ export const DarkModeProvider = ({
       {children}
     </DarkModeContext.Provider>
   );
-};
-
-/**
- * Helper hook that returns the darkMode context and the toggle function.
- * This also prevents the need to call useContext elsewhere in the application.
- */
-export const useDarkModeContext = () => {
-  const { darkModeContext } = useContext(DarkModeContext);
-  return { dark: darkModeContext.darkMode };
 };
