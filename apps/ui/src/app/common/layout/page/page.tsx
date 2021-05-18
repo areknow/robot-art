@@ -7,9 +7,15 @@ interface PageProps {
 }
 
 const StyledPage = styled.div`
-  max-width: 1200px;
+  max-width: 1248px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 50px 24px;
+  @media (max-width: 900px) {
+    padding: 50px 8px;
+    h1 {
+      margin-left: 24px;
+    }
+  }
 `;
 
 export const Page = memo(({ title, children }: PageProps) => {

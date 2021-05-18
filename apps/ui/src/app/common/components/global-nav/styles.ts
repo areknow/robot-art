@@ -11,7 +11,8 @@ export const StyledNavContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1248px;
+    padding: 0 24px;
     margin: auto;
   }
   ul {
@@ -64,7 +65,16 @@ export const StyledMainNav = styled.div`
       margin-right: 40px;
     }
   }
+  @media (max-width: 900px) {
+    svg {
+      margin-right: 0;
+    }
+    ul {
+      display: none;
+    }
+  }
 `;
+
 export const StyledSecondaryNav = styled.div`
   font-size: 16px;
   line-height: 18px;
@@ -88,6 +98,9 @@ export const StyledSecondaryNav = styled.div`
       }
     }
   }
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const StyledAvatar = styled.div<{ url: string }>`
@@ -105,4 +118,74 @@ export const StyledAvatar = styled.div<{ url: string }>`
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
+
+export const StyledHamburger = styled.div`
+  height: 32px;
+  width: 32px;
+  align-items: center;
+  display: flex;
+  div {
+    height: 2px;
+    width: 100%;
+    background: var(--neutral-5);
+    position: relative;
+    &:before,
+    &:after {
+      background: var(--neutral-5);
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+    }
+    &:before {
+      top: -8px;
+    }
+    &:after {
+      bottom: -8px;
+    }
+  }
+`;
+
+export const StyledMobileNav = styled.div`
+  display: none;
+  @media (max-width: 900px) {
+    display: flex;
+  }
+`;
+
+export const StyledMobileMenu = styled.div`
+  width: 100%;
+  height: calc(100vh - 84px);
+  background: var(--overlay);
+  position: absolute;
+  top: 84px;
+  left: 0;
+  border-top: 1px solid var(--neutral-3);
+  ul {
+    display: block;
+    li {
+      button {
+        all: unset;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      a,
+      button {
+        padding: 20px;
+        display: block;
+        font-size: 20px;
+        background: var(--neutral-1);
+        border-bottom: 1px solid var(--neutral-3);
+        &.active {
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 `;

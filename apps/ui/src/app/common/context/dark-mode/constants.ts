@@ -22,6 +22,7 @@ const customProperties = (darkMode: boolean): { [key: string]: string } => {
     '--neutral-5': colors.neutral5,
     '--neutral-6': colors.neutral6,
     '--shadow': colors.shadow,
+    '--overlay': colors.overlay,
     '--red': colors.red,
   };
 };

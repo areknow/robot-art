@@ -12,6 +12,7 @@ export const LIGHT_THEME = {
   neutral6: '#31302F',
   red: '#d83030',
   shadow: 'rgba(0, 0, 0, 0.17)',
+  overlay: 'rgba(0, 0, 0, 0.3)',
 };
 
 export const DARK_THEME = {
@@ -23,4 +24,5 @@ export const DARK_THEME = {
   neutral6: '#FFFFFF',
   red: '#eb3333',
   shadow: 'rgba(0, 0, 0, 0.37)',
+  overlay: 'rgba(0, 0, 0, 0.6)',
 };

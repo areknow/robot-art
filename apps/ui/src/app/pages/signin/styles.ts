@@ -4,7 +4,7 @@ export const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 80px);
+  height: 100vh;
   position: relative;
 `;
 
@@ -21,6 +21,12 @@ export const StyledContent = styled.div`
     margin: auto;
     display: flex;
   }
+  @media (max-width: 900px) {
+    border-radius: 0;
+    height: 100vh;
+    padding: 74px 0 0 0;
+    border: 0;
+  }
 `;
 
 export const StyledFormError = styled.div`
@@ -29,11 +35,20 @@ export const StyledFormError = styled.div`
   text-align: center;
   height: 16px;
   padding: 0 80px;
+  @media (max-width: 900px) {
+    margin-top: 46px;
+  }
 `;
 
 export const StyledLogo = styled.div`
   svg {
     fill: var(--neutral-6);
+  }
+  @media (max-width: 900px) {
+    svg {
+      height: 65px;
+      width: 165px;
+    }
   }
 `;
 
@@ -45,6 +60,10 @@ export const StyledForm = styled.div`
   }
   button:not(:last-child) {
     margin-bottom: 16px;
+  }
+  @media (max-width: 900px) {
+    padding: 0 24px;
+    margin-top: 30px;
   }
 `;
 

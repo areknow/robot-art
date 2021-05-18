@@ -13,7 +13,7 @@ export const StyledContent = styled.div`
 export const StyledUpload = styled.div<{ dragActive: boolean }>`
   cursor: pointer;
   margin-top: 24px;
-  background: var(--neutral-3);
+  background: var(--neutral-2);
   border: 2px dashed var(--neutral-4);
   box-sizing: border-box;
   border-radius: 8px;
@@ -34,7 +34,7 @@ export const StyledUpload = styled.div<{ dragActive: boolean }>`
   ${({ dragActive }) =>
     dragActive &&
     css`
-      background: var(--neutral-2);
+      background: var(--neutral-3);
     `}
 `;
 
