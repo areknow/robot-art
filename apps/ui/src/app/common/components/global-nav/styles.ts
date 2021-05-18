@@ -181,6 +181,7 @@ export const StyledMobileMenu = styled.div`
         background: var(--neutral-1);
         border-bottom: 1px solid var(--neutral-3);
         &.active {
+          font-weight: bold;
           &:after {
             display: none;
           }
