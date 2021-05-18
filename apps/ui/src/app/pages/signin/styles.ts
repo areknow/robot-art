@@ -45,6 +45,7 @@ export const StyledLogo = styled.div`
     fill: var(--neutral-6);
   }
   @media (max-width: 900px) {
+    text-align: center;
     svg {
       height: 65px;
       width: 165px;
