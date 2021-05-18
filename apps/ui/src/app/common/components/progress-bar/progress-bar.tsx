@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MAX_PROGRESS_VALUE } from './constants';
 
 interface ProgressBarProps {
   percentage: number;
@@ -6,7 +7,7 @@ interface ProgressBarProps {
 
 const StyledProgressBar = styled.progress`
   appearance: none;
-  border: 2px solid #d8dadb;
+  border: 2px solid var(--neutral-3);
   box-sizing: border-box;
   border-radius: 8px;
   padding: 2px;
@@ -20,10 +21,12 @@ const StyledProgressBar = styled.progress`
   ::-webkit-progress-value {
     height: 26px;
     border-radius: 5px;
-    background-color: #414242;
+    background-color: var(--neutral-5);
   }
 `;
 
 export const ProgressBar = ({ percentage }: ProgressBarProps) => {
-  return <StyledProgressBar id="file" value={percentage} max="55" />;
+  return (
+    <StyledProgressBar id="file" value={percentage} max={MAX_PROGRESS_VALUE} />
+  );
 };

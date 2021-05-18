@@ -10,46 +10,46 @@ interface ButtonProps {
 
 const StyledButton = styled.button<Pick<ButtonProps, 'variant' | 'disabled'>>`
   all: unset;
-  background: #414242;
+  background: var(--neutral-5);
   border-radius: 8px;
   padding: 14px;
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
   text-align: center;
-  color: #ffffff;
-  border: 2px solid #414242;
+  color: var(--neutral-1);
+  border: 2px solid var(--neutral-5);
   box-sizing: border-box;
   cursor: pointer;
   &:hover {
-    border-color: #737475;
-    background: #737475;
+    border-color: var(--neutral-4);
+    background: var(--neutral-4);
   }
   &:active {
-    border-color: #414242;
-    background: #414242;
+    border-color: var(--neutral-5);
+    background: var(--neutral-5);
   }
   ${({ variant }) =>
     variant === 'secondary' &&
     css`
-      color: #414242;
-      background: #ffffff;
+      color: var(--neutral-5);
+      background: var(--neutral-1);
       &:hover {
-        background: #f4f6f8;
-        color: #414242;
+        background: var(--neutral-2);
+        color: var(--neutral-5);
       }
       &:active {
-        border-color: #414242;
-        background: #414242;
-        color: #fff;
+        border-color: var(--neutral-5);
+        background: var(--neutral-5);
+        color: var(--neutral-1);
       }
     `}
   ${({ disabled }) =>
     disabled &&
     css`
-      background: #d8dadb;
-      border-color: #d8dadb;
-      color: #9c9d9e;
+      background: var(--neutral-3);
+      border-color: var(--neutral-3);
+      color: var(--neutral-1);
       pointer-events: none;
     `}
 `;

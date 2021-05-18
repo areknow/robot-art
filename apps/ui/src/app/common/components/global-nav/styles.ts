@@ -1,9 +1,8 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledNavContainer = styled.div`
-  background: #fff;
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.17);
+  background: var(--neutral-1);
+  box-shadow: 0px 1px 0px var(--shadow);
   padding: 24px 0;
   position: relative;
   z-index: 1;
@@ -27,7 +26,7 @@ export const StyledNavContainer = styled.div`
         &.active {
           position: relative;
           &:after {
-            background-color: #414242;
+            background-color: var(--neutral-5);
             content: '';
             width: 100%;
             height: 2px;
@@ -41,13 +40,19 @@ export const StyledNavContainer = styled.div`
   }
 `;
 
+export const StyledLogo = styled.div`
+  svg {
+    fill: var(--neutral-6);
+  }
+`;
+
 export const StyledMainNav = styled.div`
   display: flex;
   align-items: center;
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
-  color: #414242;
+  color: var(--neutral-5);
   svg {
     height: 32px;
     width: 81px;
@@ -62,7 +67,7 @@ export const StyledMainNav = styled.div`
 export const StyledSecondaryNav = styled.div`
   font-size: 16px;
   line-height: 18px;
-  color: #737475;
+  color: var(--neutral-4);
   > div {
     display: flex;
   }
@@ -73,7 +78,7 @@ export const StyledSecondaryNav = styled.div`
       }
       a {
         &.active:after {
-          background-color: #737475;
+          background-color: var(--neutral-4);
         }
       }
       button {
@@ -88,17 +93,15 @@ export const StyledAvatar = styled.div<{ url: string }>`
   height: 32px;
   width: 32px;
   border-radius: 20px;
-  background-color: #737475;
+  background-color: var(--neutral-4);
   margin-left: 20px;
   background-image: url(${({ url }) => url});
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  color: white;
+  color: var(--neutral-1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
 `;
-
-export const StyledLink = styled(NavLink)``;

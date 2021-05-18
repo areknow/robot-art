@@ -13,7 +13,7 @@ const StyledContent = styled.div`
     display: inline;
   }
   h3 {
-    color: #737475;
+    color: var(--neutral-4);
   }
 `;
 

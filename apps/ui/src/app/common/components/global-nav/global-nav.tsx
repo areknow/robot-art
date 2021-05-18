@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../../../assets/logo.svg';
+import { ReactComponent as Logo } from '../../../../assets/mondo-logo.svg';
 import { firebaseAuth } from '../../constants';
 import { useFirebaseAdmin, useFirebaseAuthenticated } from '../../hooks';
 import { MAIN_NAVIGATION } from './links';
 import {
   StyledAvatar,
+  StyledLogo,
   StyledMainNav,
   StyledNavContainer,
   StyledSecondaryNav,
@@ -26,7 +27,9 @@ export const GlobalNav = () => {
     <StyledNavContainer>
       <div>
         <StyledMainNav>
-          <Logo />
+          <StyledLogo>
+            <Logo />
+          </StyledLogo>
           <ul>
             {MAIN_NAVIGATION.map((item, key) => (
               <li key={key}>

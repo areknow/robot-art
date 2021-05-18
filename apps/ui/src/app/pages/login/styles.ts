@@ -11,10 +11,10 @@ export const StyledContainer = styled.div`
 export const StyledContent = styled.div`
   padding: 80px 0 94px 0;
   width: 607px;
-  background: #fff;
-  box-shadow: 0px 23px 30px -9px rgba(0, 0, 0, 0.17);
+  background: var(--neutral-1);
+  box-shadow: 0px 23px 30px -9px var(--shadow);
   border-radius: 8px;
-  border: 1px solid #d8dadb;
+  border: 1px solid var(--neutral-3);
   svg {
     width: 233px;
     height: 91px;
@@ -25,10 +25,16 @@ export const StyledContent = styled.div`
 
 export const StyledFormError = styled.div`
   margin-top: 50px;
-  color: #d83030;
+  color: var(--red);
   text-align: center;
   height: 16px;
   padding: 0 80px;
+`;
+
+export const StyledLogo = styled.div`
+  svg {
+    fill: var(--neutral-6);
+  }
 `;
 
 export const StyledForm = styled.div`
@@ -56,7 +62,7 @@ export const StyledFooterContent = styled.div`
   text-align: center;
   span {
     margin-right: 4px;
-    color: #737475;
+    color: var(--neutral-4);
   }
   button {
     all: unset;

@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../../assets/logo.svg';
+import { ReactComponent as Logo } from '../../../assets/mondo-logo.svg';
 import { Button, Input } from '../../common/components';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { ADMIN_EMAIL, ADMIN_USER_NAME } from './constants';
@@ -14,6 +14,7 @@ import {
   StyledForm,
   StyledFormError,
   StyledInputs,
+  StyledLogo,
 } from './styles';
 
 export const Login = () => {
@@ -80,7 +81,9 @@ export const Login = () => {
     return (
       <StyledContainer>
         <StyledContent>
-          <Logo />
+          <StyledLogo>
+            <Logo />
+          </StyledLogo>
           <StyledFormError>{formError ? formError : ''}</StyledFormError>
           <StyledForm>
             <StyledInputs>

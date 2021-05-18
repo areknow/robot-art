@@ -10,8 +10,8 @@ html {
   text-rendering: optimizeLegibility;
 }
 body {
-  background: #f4f6f8;
-  color: #414242;
+  background: var(--neutral-2);
+  color: var(--neutral-5);
   min-height: 100vh;
   font-size: 14px;
   font-family: Helvetica, sans-serif;

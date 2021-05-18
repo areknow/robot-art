@@ -13,8 +13,8 @@ export const StyledContent = styled.div`
 export const StyledUpload = styled.div<{ dragActive: boolean }>`
   cursor: pointer;
   margin-top: 24px;
-  background: #eceef0;
-  border: 2px dashed #737475;
+  background: var(--neutral-3);
+  border: 2px dashed var(--neutral-4);
   box-sizing: border-box;
   border-radius: 8px;
   height: 210px;
@@ -22,6 +22,9 @@ export const StyledUpload = styled.div<{ dragActive: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  svg path {
+    fill: var(--neutral-5);
+  }
   div {
     font-size: 20px;
     line-height: 23px;
@@ -30,7 +33,7 @@ export const StyledUpload = styled.div<{ dragActive: boolean }>`
   ${({ dragActive }) =>
     dragActive &&
     css`
-      background: red;
+      background: var(--neutral-2);
     `}
 `;
 
