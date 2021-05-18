@@ -33,6 +33,7 @@
     "@react-firebase/auth": "^0.2.10",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
     "document-register-element": "1.13.1",
     "express": "4.17.1",
     "firebase": "^8.6.1",

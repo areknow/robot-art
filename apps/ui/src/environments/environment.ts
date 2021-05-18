@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  endpoint: 'http://localhost:3333',
   firebaseConfig: {
     apiKey: 'AIzaSyDgjACwLjxwf2qfD7YqFUdnlTqAUcWrsKI',
     authDomain: 'robot-art-8c4de.firebaseapp.com',

@@ -1,9 +1,11 @@
 import * as express from 'express';
 import { router } from './app/routes';
+import cors = require('cors');
 
 const app = express();
-app.use(express.json());
 
+app.use(express.json());
+app.use(cors());
 app.use('/api', router);
 
 const port = process.env.PORT || 3333;
