@@ -22,6 +22,7 @@ export const StyledContent = styled.div`
     display: flex;
   }
   @media (max-width: 900px) {
+    width: 100%;
     border-radius: 0;
     height: 100vh;
     padding: 74px 0 0 0;
