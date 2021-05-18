@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { environment } from '../../../environments/environment';
 import { useFirebaseAuthenticated } from './use-firebase-authenticated';
 
 export const useFirebaseAdmin = () => {
@@ -9,7 +10,7 @@ export const useFirebaseAdmin = () => {
   useEffect(() => {
     async function fetch() {
       if (authenticated) {
-        const response = await axios.get('/api/status');
+        const response = await axios.get(`${environment.endpoint}/api/status`);
         setIsAdmin(response.data.isAdmin);
       }
     }
