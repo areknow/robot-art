@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../../assets/logo.svg';
 import { firebaseAuth } from '../../constants';
-import { useFirebaseAdmin } from '../../hooks';
+import { useFirebaseAdmin, useFirebaseAuthenticated } from '../../hooks';
 import { MAIN_NAVIGATION } from './links';
 import {
+  StyledAvatar,
   StyledMainNav,
   StyledNavContainer,
   StyledSecondaryNav,
@@ -13,8 +14,13 @@ const logOut = async () => {
   await firebaseAuth().signOut();
 };
 
+const formatAvatar = (email: string) => {
+  return email.slice(0, 1).toUpperCase();
+};
+
 export const GlobalNav = () => {
   const { isAdmin } = useFirebaseAdmin();
+  const { user } = useFirebaseAuthenticated();
 
   return (
     <StyledNavContainer>
@@ -30,16 +36,21 @@ export const GlobalNav = () => {
           </ul>
         </StyledMainNav>
         <StyledSecondaryNav>
-          <ul>
-            {isAdmin && (
+          <div>
+            <ul>
+              {isAdmin && (
+                <li>
+                  <Link to="/admin">Admin</Link>
+                </li>
+              )}
               <li>
-                <Link to="/admin">Admin</Link>
+                <button onClick={logOut}>Log out</button>
               </li>
-            )}
-            <li>
-              <button onClick={logOut}>Log Out</button>
-            </li>
-          </ul>
+            </ul>
+            <StyledAvatar url={user.photoURL}>
+              {!user.photoURL && formatAvatar(user.email)}
+            </StyledAvatar>
+          </div>
         </StyledSecondaryNav>
       </div>
     </StyledNavContainer>

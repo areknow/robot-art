@@ -4,6 +4,8 @@ import { firebaseAuth } from '../constants';
 
 interface FirebaseUser {
   uid: string;
+  photoURL: string;
+  email: string;
   stsTokenManager: {
     accessToken: string;
   };
@@ -32,5 +34,5 @@ export const useFirebaseAuthenticated = () => {
     return () => setUserId('');
   }, [user]);
 
-  return { authenticated, userId };
+  return { authenticated, userId, user };
 };

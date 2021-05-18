@@ -50,6 +50,9 @@ export const StyledSecondaryNav = styled.div`
   font-size: 16px;
   line-height: 18px;
   color: #737475;
+  > div {
+    display: flex;
+  }
   ul {
     li {
       &:not(:last-child) {
@@ -61,4 +64,21 @@ export const StyledSecondaryNav = styled.div`
       }
     }
   }
+`;
+
+export const StyledAvatar = styled.div<{ url: string }>`
+  height: 32px;
+  width: 32px;
+  border-radius: 20px;
+  background-color: #737475;
+  margin-left: 20px;
+  background-image: url(${({ url }) => url});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 `;

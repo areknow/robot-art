@@ -124,7 +124,7 @@ export const Login = () => {
                     loginWithEmailPass();
                   }}
                 >
-                  Log In
+                  Log in
                 </Button>
               )}
               {isRegistering && (
