@@ -5,6 +5,7 @@ interface ButtonProps {
   children: ReactNode;
   variant?: 'primary' | 'secondary';
   disabled?: boolean;
+  icon?: ReactNode;
   onClick: () => void;
 }
 
@@ -54,15 +55,33 @@ const StyledButton = styled.button<Pick<ButtonProps, 'variant' | 'disabled'>>`
     `}
 `;
 
+const StyledContentWithButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:after {
+    content: '';
+    width: 20px;
+  }
+`;
+
 export const Button = ({
   children,
   variant = 'primary',
   disabled,
+  icon,
   onClick,
 }: ButtonProps) => {
   return (
     <StyledButton variant={variant} disabled={disabled} onClick={onClick}>
-      {children}
+      {icon ? (
+        <StyledContentWithButton>
+          {icon}
+          {children}
+        </StyledContentWithButton>
+      ) : (
+        children
+      )}
     </StyledButton>
   );
 };

@@ -54,6 +54,14 @@ export const StyledInputs = styled.div`
   }
 `;
 
+export const StyledGoogleLogo = styled.div`
+  svg {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+`;
+
 export const StyledButtons = styled.div`
   margin-top: 40px;
 `;

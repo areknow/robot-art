@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../../../assets/mondo-logo.svg';
+import { ReactComponent as MondoLogo } from '../../../../assets/mondo-logo.svg';
 import { firebaseAuth } from '../../constants';
 import { useFirebaseAdmin, useFirebaseAuthenticated } from '../../hooks';
 import { MAIN_NAVIGATION } from './links';
@@ -28,7 +28,7 @@ export const GlobalNav = () => {
       <div>
         <StyledMainNav>
           <StyledLogo>
-            <Logo />
+            <MondoLogo />
           </StyledLogo>
           <ul>
             {MAIN_NAVIGATION.map((item, key) => (

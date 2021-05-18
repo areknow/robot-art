@@ -2,7 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../../assets/mondo-logo.svg';
+import { ReactComponent as GoogleLogo } from '../../../assets/google-logo.svg';
+import { ReactComponent as MondoLogo } from '../../../assets/mondo-logo.svg';
 import { Button, Input } from '../../common/components';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { ADMIN_EMAIL, ADMIN_USER_NAME } from './constants';
@@ -13,6 +14,7 @@ import {
   StyledFooterContent,
   StyledForm,
   StyledFormError,
+  StyledGoogleLogo,
   StyledInputs,
   StyledLogo,
 } from './styles';
@@ -82,7 +84,7 @@ export const Signin = () => {
       <StyledContainer>
         <StyledContent>
           <StyledLogo>
-            <Logo />
+            <MondoLogo />
           </StyledLogo>
           <StyledFormError>{formError ? formError : ''}</StyledFormError>
           <StyledForm>
@@ -140,6 +142,11 @@ export const Signin = () => {
                 </Button>
               )}
               <Button
+                icon={
+                  <StyledGoogleLogo>
+                    <GoogleLogo />
+                  </StyledGoogleLogo>
+                }
                 variant="secondary"
                 onClick={async () => {
                   signInWithGoogle();
