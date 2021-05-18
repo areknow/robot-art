@@ -12,7 +12,7 @@ const StyledImage = styled.div<{ url: string }>`
   background-repeat: no-repeat;
   background-size: contain;
   height: 320px;
-  margin-top: 20px;
+  margin: 20px 0;
 `;
 
 export const RobotIdentity = memo(({ robot }: RobotIdentityProps) => {
