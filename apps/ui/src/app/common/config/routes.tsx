@@ -1,4 +1,4 @@
-import { Admin, Results, Robots, Signin } from './pages';
+import { Admin, Results, Robots, Signin } from '../../pages';
 
 export const routes = [
   {

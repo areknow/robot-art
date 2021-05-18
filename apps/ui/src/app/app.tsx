@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { environment } from '../environments/environment';
 import '../styles/global.scss';
 import { GlobalNav, ProtectedRoute } from './common/components';
+import { routes } from './common/config';
 import { DarkModeProvider } from './common/context';
 import { useFirebaseAuthenticated } from './common/hooks';
-import { routes } from './routes';
 
 export const App = () => {
   const { authenticated } = useFirebaseAuthenticated();
