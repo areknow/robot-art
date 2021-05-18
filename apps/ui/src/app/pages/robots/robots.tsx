@@ -20,6 +20,8 @@ export const Robots = () => {
   const [loading, setLoading] = useState(true);
   const [robots, setRobots] = useState<Robot[]>([]);
   const [error, setError] = useState(false);
+  const [voting, setVoting] = useState(false);
+  const [votingId, setVotingId] = useState('');
 
   const { authenticated, userId } = useFirebaseAuthenticated();
 
@@ -39,8 +41,17 @@ export const Robots = () => {
   }, [authenticated]);
 
   const handleVote = async (id: string) => {
-    const result = await voteForRobot(id);
-    setRobots(await combineRobotsWithImages(result.data));
+    setVoting(true);
+    setVotingId(id);
+    try {
+      const result = await voteForRobot(id);
+      setRobots(await combineRobotsWithImages(result.data));
+    } catch (error) {
+      setError(true);
+    } finally {
+      setVoting(false);
+      setVotingId('');
+    }
   };
 
   if (loading) {
@@ -56,6 +67,7 @@ export const Robots = () => {
               <VoteCard
                 key={key}
                 robot={robot}
+                voting={votingId === robot.id && voting}
                 hasVoted={robot.voters.includes(userId)}
                 onActionClick={() => handleVote(robot.id)}
               />
