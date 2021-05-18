@@ -116,7 +116,7 @@ The project uses a NX monorepo to organize the client and server code. This allo
 - libs
   - api-interfaces
 
-### Client (howl)
+### Client (ui)
 - common
   - components
     - add-card
