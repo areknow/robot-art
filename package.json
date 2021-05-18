@@ -4,8 +4,11 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "nx serve",
-    "build": "nx build",
+    "start": "node dist/apps/api/main.js",
+    "start-ui": "nx serve ui",
+    "start-api": "nx serve api",
+    "build": "nx build api --prod",
+    "build-ui": "nx build ui --prod",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
