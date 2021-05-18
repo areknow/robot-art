@@ -9,6 +9,7 @@ export const authGuard = async (
   if (await isAuthenticated(req.headers.authorization)) {
     return next();
   } else {
+    console.log(req.headers.authorization);
     const errorMessage = 'Unauthorized request.';
     const err = new Error(errorMessage);
     res.status(401).send({ error: errorMessage });

@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import {
   AddCard,
   EditCard,
-  GlobalNav,
+  Error,
   Grid,
   Loader,
 } from '../../common/components';
-import { storage } from '../../common/constants';
+import {
+  PAGE_ERROR_CONTENT,
+  PAGE_ERROR_LABEL,
+  storage,
+} from '../../common/constants';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
 import {
@@ -22,7 +26,7 @@ import {
 export const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [robots, setRobots] = useState<Robot[]>([]);
-  const [error, setError] = useState(false); // TODO: show in ui
+  const [error, setError] = useState(false);
 
   const { authenticated } = useFirebaseAuthenticated();
 
@@ -57,6 +61,7 @@ export const Admin = () => {
 
   const handleEdit = (id: string) => {
     console.log(1);
+    //TODO: complete admin edit
   };
 
   const handleDelete = async (id: string) => {
@@ -71,26 +76,27 @@ export const Admin = () => {
     }
   };
 
-  return (
-    <>
-      <GlobalNav />
+  if (loading) {
+    return <Loader />;
+  } else if (error) {
+    return <Error label={PAGE_ERROR_LABEL} content={PAGE_ERROR_CONTENT} />;
+  } else if (!loading && !error) {
+    return (
       <Page title="Admin">
-        {loading ? (
-          <Loader />
-        ) : (
-          <Grid>
-            <AddCard onAddClick={handleAdd} />
-            {sortByName(robots).map((robot, key) => (
-              <EditCard
-                key={key}
-                robot={robot}
-                onEditClick={() => handleEdit(robot.id)}
-                onDeleteClick={() => handleDelete(robot.id)}
-              />
-            ))}
-          </Grid>
-        )}
+        <Grid>
+          <AddCard onAddClick={handleAdd} />
+          {sortByName(robots).map((robot, key) => (
+            <EditCard
+              key={key}
+              robot={robot}
+              onEditClick={() => handleEdit(robot.id)}
+              onDeleteClick={() => handleDelete(robot.id)}
+            />
+          ))}
+        </Grid>
       </Page>
-    </>
-  );
+    );
+  } else {
+    return null;
+  }
 };

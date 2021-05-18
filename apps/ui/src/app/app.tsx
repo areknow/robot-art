@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { environment } from '../environments/environment';
 import '../styles/global.scss';
-import { ProtectedRoute } from './common/components';
+import { GlobalNav, ProtectedRoute } from './common/components';
 import { DarkModeProvider } from './common/context';
 import { useFirebaseAuthenticated } from './common/hooks';
 import { routes } from './routes';
@@ -15,6 +15,7 @@ export const App = () => {
     <FirebaseAuthProvider {...environment.firebaseConfig} firebase={firebase}>
       <DarkModeProvider>
         <BrowserRouter>
+          {authenticated && <GlobalNav />}
           <Switch>
             {routes.map((route, key) =>
               route.protected ? (

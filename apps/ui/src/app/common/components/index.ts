@@ -2,6 +2,7 @@ export * from './add-card/add-card';
 export * from './button/button';
 export * from './card/card';
 export * from './edit-card/edit-card';
+export * from './error/error';
 export * from './global-nav/global-nav';
 export * from './grid/grid';
 export * from './input/input';

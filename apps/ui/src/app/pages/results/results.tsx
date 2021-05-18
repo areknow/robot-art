@@ -1,6 +1,7 @@
 import { Robot } from '@robot-art/api-interfaces';
 import { useEffect, useState } from 'react';
-import { GlobalNav, Grid, Loader, ResultCard } from '../../common/components';
+import { Error, Grid, Loader, ResultCard } from '../../common/components';
+import { PAGE_ERROR_CONTENT, PAGE_ERROR_LABEL } from '../../common/constants';
 import { useFirebaseAuthenticated } from '../../common/hooks';
 import { Page } from '../../common/layout';
 import {
@@ -12,7 +13,7 @@ import {
 export const Results = () => {
   const [loading, setLoading] = useState(true);
   const [robots, setRobots] = useState<Robot[]>([]);
-  const [error, setError] = useState(false); // TODO: show in ui
+  const [error, setError] = useState(false);
 
   const { authenticated } = useFirebaseAuthenticated();
 
@@ -31,20 +32,21 @@ export const Results = () => {
     })();
   }, [authenticated]);
 
-  return (
-    <>
-      <GlobalNav />
+  if (loading) {
+    return <Loader />;
+  } else if (error) {
+    return <Error label={PAGE_ERROR_LABEL} content={PAGE_ERROR_CONTENT} />;
+  } else if (!loading && !error) {
+    return (
       <Page title="Results">
-        {loading ? (
-          <Loader />
-        ) : (
-          <Grid>
-            {sortByVoteCount(robots).map((robot, key) => (
-              <ResultCard key={key} robot={robot} />
-            ))}
-          </Grid>
-        )}
+        <Grid>
+          {sortByVoteCount(robots).map((robot, key) => (
+            <ResultCard key={key} robot={robot} />
+          ))}
+        </Grid>
       </Page>
-    </>
-  );
+    );
+  } else {
+    return null;
+  }
 };
