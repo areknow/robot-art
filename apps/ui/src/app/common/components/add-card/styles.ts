@@ -22,6 +22,7 @@ export const StyledUpload = styled.div<{ dragActive: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 10px;
   svg path {
     fill: var(--neutral-5);
   }

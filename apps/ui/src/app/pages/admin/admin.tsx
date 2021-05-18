@@ -60,8 +60,7 @@ export const Admin = () => {
   };
 
   const handleEdit = (id: string) => {
-    console.log(1);
-    //TODO: complete admin edit
+    console.log(id);
   };
 
   const handleDelete = async (id: string) => {
