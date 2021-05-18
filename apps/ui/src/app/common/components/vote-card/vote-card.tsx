@@ -3,6 +3,7 @@ import { memo } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Spinner } from '../../../../assets/spinner.svg';
 import { Button, Card, RobotIdentity } from '../../components';
+import { VOTE_CAST_LABEL, VOTE_LABEL, VOTING_LABEL } from './constants';
 
 interface VoteCardProps {
   /** The robot to vote on. */
@@ -44,7 +45,7 @@ export const VoteCard = memo(
               )
             }
           >
-            {voting ? 'Voting' : hasVoted ? 'Vote cast' : 'Vote'}
+            {voting ? VOTING_LABEL : hasVoted ? VOTE_CAST_LABEL : VOTE_LABEL}
           </Button>
         </StyledContent>
       </Card>

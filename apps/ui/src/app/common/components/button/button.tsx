@@ -73,7 +73,12 @@ const StyledContentWithButton = styled.div`
 export const Button = memo(
   ({ children, variant = 'primary', disabled, icon, onClick }: ButtonProps) => {
     return (
-      <StyledButton variant={variant} disabled={disabled} onClick={onClick}>
+      <StyledButton
+        variant={variant}
+        disabled={disabled}
+        onClick={onClick}
+        data-testid="button"
+      >
         {icon ? (
           <StyledContentWithButton>
             {icon}

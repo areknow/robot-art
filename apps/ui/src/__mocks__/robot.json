@@ -1,0 +1,8 @@
+{
+  "id": "123",
+  "name": "foo",
+  "image": "bar",
+  "imageUrl": "xyz",
+  "votes": 1,
+  "voters": ["a", "b"]
+}

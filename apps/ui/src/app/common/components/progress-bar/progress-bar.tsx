@@ -2,8 +2,8 @@ import { memo } from 'react';
 import styled from 'styled-components';
 
 interface ProgressBarProps {
-  /** The percentage of the progress bar completion. */
-  percentage: number;
+  /** The value of the progress bar completion. */
+  value: number;
   /** The maximum value that the progress bar can reach. */
   max: number;
 }
@@ -28,6 +28,13 @@ const StyledProgressBar = styled.progress`
   }
 `;
 
-export const ProgressBar = memo(({ percentage, max }: ProgressBarProps) => {
-  return <StyledProgressBar id="file" value={percentage} max={max} />;
+export const ProgressBar = memo(({ value, max }: ProgressBarProps) => {
+  return (
+    <StyledProgressBar
+      data-testid="progress-bar"
+      id="file"
+      value={value}
+      max={max}
+    />
+  );
 });

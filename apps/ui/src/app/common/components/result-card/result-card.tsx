@@ -27,10 +27,7 @@ export const ResultCard = memo(({ robot }: ResultCardProps) => {
         <h2>{robot.votes}</h2>
         <h3>/{MAX_VOTES}</h3>
       </StyledContent>
-      <ProgressBar
-        percentage={(robot.votes / MAX_VOTES) * 100}
-        max={MAX_VOTES}
-      />
+      <ProgressBar value={robot.votes} max={MAX_VOTES} />
     </Card>
   );
 });

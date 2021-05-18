@@ -71,6 +71,7 @@ export const Input = ({
         type={type}
         value={value}
         invalid={invalid}
+        data-testid="input"
         onChange={(event) => onChange(event.target.value)}
       />
     </StyledInputContainer>
