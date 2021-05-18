@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import 'firebase/storage';
 import { environment } from '../../../environments/environment';
 
 /**

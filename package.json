@@ -11,7 +11,7 @@
     "build-ui": "nx build ui --prod",
     "build-all": "nx run-many --all --target=build",
     "test": "nx test",
-    "test-all": "npm run test-all",
+    "test-all": "nx run-many --all --target=test",
     "lint": "nx workspace-lint && nx lint",
     "lint-all": "nx run-many --all --target=lint",
     "e2e": "nx e2e",
