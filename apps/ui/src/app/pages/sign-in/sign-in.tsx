@@ -84,6 +84,14 @@ export const SignIn = () => {
     setFormError('');
   };
 
+  /**
+   * While the firebase auth state is being decided, show nothing.
+   * This prevents a flash of the login screen while already authenticated.
+   */
+  if (authenticated === undefined) {
+    return null;
+  }
+
   if (authenticated) {
     return <Redirect to="/" />;
   } else {

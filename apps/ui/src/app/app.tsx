@@ -23,7 +23,7 @@ export const App = () => {
                   key={key}
                   path={route.path}
                   component={route.component}
-                  authenticated={authenticated}
+                  authenticated={authenticated as boolean}
                 />
               ) : (
                 <Route key={key} path={route.path}>

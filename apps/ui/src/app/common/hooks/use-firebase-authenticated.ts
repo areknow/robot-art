@@ -17,7 +17,9 @@ interface FirebaseUser {
  * @returns auth conditional and user payload from firebase.
  */
 export const useFirebaseAuthenticated = () => {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState<boolean | undefined>(
+    undefined
+  );
   const [userId, setUserId] = useState('');
 
   /** Watches for the firebase state change and sets the internal state. */
