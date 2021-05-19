@@ -42,11 +42,11 @@ export const StyledFormError = styled.div`
 `;
 
 export const StyledLogo = styled.div`
+  text-align: center;
   svg {
     fill: var(--neutral-6);
   }
   @media (max-width: 900px) {
-    text-align: center;
     svg {
       height: 65px;
       width: 165px;
