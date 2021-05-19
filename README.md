@@ -170,6 +170,8 @@ The project uses a NX monorepo to organize the client and server code. This allo
   - robot
     - constants
     - controller
+    - middleware
+    - service
   - routes
 - main.ts
 
