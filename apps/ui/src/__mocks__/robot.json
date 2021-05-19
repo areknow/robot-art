@@ -4,5 +4,5 @@
   "image": "bar",
   "imageUrl": "xyz",
   "votes": 1,
-  "voters": ["a", "b"]
+  "voted": false
 }

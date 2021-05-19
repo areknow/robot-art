@@ -1,9 +1,8 @@
 import { db } from '../db';
 
 /**
- * Get all documents in a collection
- * @param collection The collection to query
- * @returns
+ * Get all documents in a collection.
+ * @param collection The collection to query.
  */
 export const getDocumentsFromCollection = async (collection: string) => {
   const query = db.collection(collection);
@@ -22,10 +21,9 @@ export const getDocumentsFromCollection = async (collection: string) => {
 };
 
 /**
- * Get a single document in a collection
- * @param collection The collection to query
- * @param id The ID of the document
- * @returns
+ * Get a single document in a collection.
+ * @param collection The collection to query.
+ * @param id The ID of the document.
  */
 export const getDocumentFromCollection = async (
   collection: string,
@@ -37,9 +35,9 @@ export const getDocumentFromCollection = async (
 };
 
 /**
- * Add a document to a collection
- * @param collection The collection to query
- * @param document The document contents
+ * Add a document to a collection.
+ * @param collection The collection to modify.
+ * @param document The document contents.
  */
 export const addDocumentToCollection = async (
   collection: string,
@@ -49,18 +47,32 @@ export const addDocumentToCollection = async (
 };
 
 /**
- * Delete a single document from a collection
- * @param collection The collection to query
- * @param id The ID of the document
+ * Add a document with custom ID to a collection.
+ * @param collection The collection to modify.
+ * @param customId The custom ID for the new document.
+ * @param document The document contents.
+ */
+export const addDocumentToCollectionWithCustomId = async (
+  collection: string,
+  customId: string,
+  document: FirebaseFirestore.DocumentData
+) => {
+  await db.collection(collection).doc(customId).set(document);
+};
+
+/**
+ * Delete a single document from a collection.
+ * @param collection The collection to modify.
+ * @param id The ID of the document.
  */
 export const deleteDocumentById = async (collection: string, id: string) => {
   await db.collection(collection).doc(id).delete();
 };
 
 /**
- * Update a document in a collection
- * @param collection The collection to query
- * @param id The ID of the document
+ * Update a document in a collection.
+ * @param collection The collection to modify.
+ * @param id The ID of the document.
  */
 export const updateDocumentInCollection = async (
   collection: string,

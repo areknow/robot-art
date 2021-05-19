@@ -4,5 +4,5 @@ export interface Robot {
   image: string;
   imageUrl: string;
   votes: number;
-  voters: string[];
+  voted: boolean;
 }

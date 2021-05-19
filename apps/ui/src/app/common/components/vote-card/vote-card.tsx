@@ -26,6 +26,7 @@ const StyledContent = styled.div`
 const StyledLoader = styled.div`
   width: 20px;
   height: 20px;
+  fill: var(--neutral-1);
 `;
 
 export const VoteCard = memo(
@@ -35,7 +36,7 @@ export const VoteCard = memo(
         <RobotIdentity robot={robot} />
         <StyledContent>
           <Button
-            disabled={hasVoted}
+            disabled={hasVoted || voting}
             onClick={onActionClick}
             icon={
               voting && (

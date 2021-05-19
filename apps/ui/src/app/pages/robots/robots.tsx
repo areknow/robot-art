@@ -75,7 +75,7 @@ export const Robots = () => {
                 key={key}
                 robot={robot}
                 voting={votingId === robot.id && voting}
-                hasVoted={robot.voters.includes(userId)}
+                hasVoted={robot.voted}
                 onActionClick={() => handleVote(robot.id)}
               />
             ))}
