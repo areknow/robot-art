@@ -3,7 +3,7 @@ import { decodeToken } from '../auth';
 import {
   getDocumentFromCollection,
   getDocumentsFromCollection,
-  updateDocumentInCollection,
+  updateDocumentInCollection
 } from '../db/service';
 import { Collection } from './constants';
 
@@ -14,7 +14,6 @@ import { Collection } from './constants';
  * @param robots The list of robots to be combined with voted data.
  * @returns List of robots with additional voted data.
  */
-// rename pls and switch param order
 export const robotsWithVoted = async (token: string, collection: string) => {
   try {
     const robots = await getDocumentsFromCollection(collection);
