@@ -6,6 +6,7 @@ import { useFirebaseAdmin, useFirebaseAuthenticated } from '../../hooks';
 import { MAIN_NAVIGATION } from './links';
 import {
   StyledAvatar,
+  StyledCloseButton,
   StyledHamburger,
   StyledLogo,
   StyledMainNav,
@@ -87,6 +88,11 @@ export const GlobalNav = memo(() => {
           </StyledHamburger>
           {mobileMenuOpen && (
             <StyledMobileMenu>
+              <StyledCloseButton
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                <div />
+              </StyledCloseButton>
               <ul>
                 <MainNavLinks />
                 <SecondaryNavLinks />

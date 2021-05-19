@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LIGHT_THEME } from '../../constants';
 
 export const StyledNavContainer = styled.div`
   background: var(--neutral-1);
@@ -159,12 +160,13 @@ export const StyledMobileNav = styled.div`
 
 export const StyledMobileMenu = styled.div`
   width: 100%;
-  height: calc(100vh - 84px);
-  background: var(--overlay);
+  height: 100vh;
+  background: ${LIGHT_THEME.neutral5};
+  color: ${LIGHT_THEME.neutral3};
   position: absolute;
-  top: 84px;
+  top: 0;
   left: 0;
-  border-top: 1px solid var(--neutral-3);
+  z-index: 2;
   ul {
     display: block;
     li {
@@ -175,18 +177,50 @@ export const StyledMobileMenu = styled.div`
       }
       a,
       button {
-        padding: 20px;
+        padding: 24px;
         display: block;
-        font-size: 20px;
-        background: var(--neutral-1);
-        border-bottom: 1px solid var(--neutral-3);
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
         &.active {
-          font-weight: bold;
+          color: ${LIGHT_THEME.neutral1};
           &:after {
             display: none;
           }
         }
       }
+    }
+  }
+`;
+
+export const StyledCloseButton = styled.div`
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 34px;
+  div {
+    transform: rotate(45deg);
+    width: 33px;
+    height: 33px;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background: ${LIGHT_THEME.neutral1};
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    &:before {
+      width: 100%;
+      height: 2px;
+    }
+    &:after {
+      width: 2px;
+      height: 100%;
     }
   }
 `;
