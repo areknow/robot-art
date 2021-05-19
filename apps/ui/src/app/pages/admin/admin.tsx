@@ -89,7 +89,7 @@ export const Admin = () => {
 
   /**
    * Handle the delete robot event.
-   * @param id The id of the robot being deleted.
+   * @param id The ID of the robot being deleted.
    */
   const handleDelete = async (id: string) => {
     setLoading(true);

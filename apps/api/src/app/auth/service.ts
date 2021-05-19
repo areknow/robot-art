@@ -21,7 +21,7 @@ export const isAuthenticated = async (token: string) => {
   }
 };
 
-/** Check if decoded token matches admin uid. */
+/** Check if decoded token matches admin ID. */
 export const isAdmin = async (token: string) => {
   try {
     const decodedToken = await decodeToken(token);

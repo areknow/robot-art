@@ -23,7 +23,7 @@ export const Robots = () => {
   const [voting, setVoting] = useState(false);
   const [votingId, setVotingId] = useState('');
 
-  const { authenticated, userId } = useFirebaseAuthenticated();
+  const { authenticated } = useFirebaseAuthenticated();
 
   /** Effect: If authenticated, fetch the list of robots with images. */
   useEffect(() => {
@@ -43,7 +43,7 @@ export const Robots = () => {
 
   /**
    * Handle the robot voting event.
-   * @param id
+   * @param id The ID of the robot to be voted on.
    */
   const handleVote = async (id: string) => {
     // Show the voting spinner.
@@ -74,7 +74,7 @@ export const Robots = () => {
               <VoteCard
                 key={key}
                 robot={robot}
-                voting={votingId === robot.id && voting}
+                voting={robot.id === votingId && voting}
                 hasVoted={robot.voted}
                 onActionClick={() => handleVote(robot.id)}
               />
