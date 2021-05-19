@@ -197,5 +197,8 @@ Admin page with edit option (dark mode)
 Robots database table
 ![alt](.github/assets/robots-table.png)
 
+Users database table
+![alt](.github/assets/users-table.png)
+
 Image storage bucket
 ![alt](.github/assets/storage-bucket.png)
