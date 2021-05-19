@@ -1,5 +1,5 @@
 import { FirebaseAuthProvider } from '@react-firebase/auth';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { environment } from '../environments/environment';
 import '../styles/global.scss';
