@@ -92,7 +92,7 @@ $ npm i
 $ npm run test-all
 ```
 ## Deployment
-The app is currently deployed using Heroku for the server and Netlify for the client. Checkout the live demo [here](https://robot-art.netlify.app/), but please note that the Heroku free tier dyno that receives no traffic for 30 minutes will sleep. You may see a loading indicator for upwards of 30 seconds before the server is awake and sending socket data. Thank you for your patience.
+The app is currently deployed using Heroku for the server and Netlify for the client. Checkout the live demo [here](https://robot-art.netlify.app/), but please note that the Heroku free tier dyno that receives no traffic for 30 minutes will sleep. You may see a loading indicator for upwards of 30 seconds before the server is awake and sending data. Thank you for your patience.
 
 ## Features
 - React frontend with styled-components
