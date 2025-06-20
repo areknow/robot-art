@@ -14,11 +14,18 @@ import {
   getRobots,
   sortByVoteCount,
 } from '../../common/utils';
+import React from 'react';
 
 export const Results = () => {
   const [loading, setLoading] = useState(true);
   const [robots, setRobots] = useState<Robot[]>([]);
   const [error, setError] = useState(false);
+
+  /** Calculate the total number of votes across all robots. */
+  const total = React.useMemo(
+    () => robots.reduce((acc, robot) => acc + robot.votes, 0),
+    [robots]
+  );
 
   const { authenticated } = useFirebaseAuthenticated();
 
@@ -48,7 +55,7 @@ export const Results = () => {
         {robots.length ? (
           <Grid>
             {sortByVoteCount(robots).map((robot, key) => (
-              <ResultCard key={key} robot={robot} />
+              <ResultCard key={key} robot={robot} maxVotes={total} />
             ))}
           </Grid>
         ) : (

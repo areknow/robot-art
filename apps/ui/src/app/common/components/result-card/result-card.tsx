@@ -2,11 +2,12 @@ import { Robot } from '@robot-art/api-interfaces';
 import { memo } from 'react';
 import styled from 'styled-components';
 import { Card, ProgressBar, RobotIdentity } from '../../components';
-import { MAX_VOTES } from './constants';
 
 interface ResultCardProps {
   /** The robot to display results for. */
   robot: Robot;
+  /** The maximum number of votes across all robots. */
+  maxVotes: number;
 }
 
 const StyledContent = styled.div`
@@ -19,15 +20,15 @@ const StyledContent = styled.div`
   }
 `;
 
-export const ResultCard = memo(({ robot }: ResultCardProps) => {
+export const ResultCard = memo(({ robot, maxVotes }: ResultCardProps) => {
   return (
     <Card>
       <RobotIdentity robot={robot} />
       <StyledContent>
         <h2>{robot.votes}</h2>
-        <h3>/{MAX_VOTES}</h3>
+        <h3>/{maxVotes}</h3>
       </StyledContent>
-      <ProgressBar value={robot.votes} max={MAX_VOTES} />
+      <ProgressBar value={robot.votes} max={maxVotes} />
     </Card>
   );
 });
