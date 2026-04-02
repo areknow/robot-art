@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  endpoint: 'https://mondo-robot-art.herokuapp.com',
+  endpoint: 'https://robot-art-production.up.railway.app',
   firebaseConfig: {
     apiKey: 'AIzaSyDgjACwLjxwf2qfD7YqFUdnlTqAUcWrsKI',
     authDomain: 'robot-art-8c4de.firebaseapp.com',
