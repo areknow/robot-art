@@ -9,6 +9,10 @@ import { DarkModeProvider } from './common/context';
 import { useFirebaseAuthenticated } from './common/hooks';
 
 export const App = () => {
+  console.log(
+    "environment",
+    environment
+  );
   const { authenticated } = useFirebaseAuthenticated();
 
   return (
