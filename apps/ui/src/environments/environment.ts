@@ -1,13 +1,13 @@
 export const environment = {
-  production: false,
-  endpoint: 'http://localhost:3333',
+  production: process.env.NODE_ENV === 'production',
+  endpoint: process.env.NX_API_ENDPOINT ?? '',
   firebaseConfig: {
-    apiKey: 'AIzaSyDgjACwLjxwf2qfD7YqFUdnlTqAUcWrsKI',
-    authDomain: 'robot-art-8c4de.firebaseapp.com',
-    projectId: 'robot-art-8c4de',
-    storageBucket: 'robot-art-8c4de.appspot.com',
-    messagingSenderId: '965600688229',
-    appId: '1:965600688229:web:4ea8dc5ffe6b3e29722e8c',
-    databaseURL: 'https://robot-art-8c4de-default-rtdb.firebaseio.com/',
+    apiKey: process.env.NX_FIREBASE_API_KEY ?? '',
+    authDomain: process.env.NX_FIREBASE_AUTH_DOMAIN ?? '',
+    projectId: process.env.NX_FIREBASE_PROJECT_ID ?? '',
+    storageBucket: process.env.NX_FIREBASE_STORAGE_BUCKET ?? '',
+    messagingSenderId: process.env.NX_FIREBASE_MESSAGING_SENDER_ID ?? '',
+    appId: process.env.NX_FIREBASE_APP_ID ?? '',
+    databaseURL: process.env.NX_FIREBASE_DATABASE_URL ?? '',
   },
 };

@@ -7,5 +7,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/ui',
-  setupFiles: ['./jest.setup.js'],
+  setupFiles: ['./jest.env.js', './jest.setup.js'],
 };
